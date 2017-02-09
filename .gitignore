@@ -1,0 +1,12 @@
+# Cached File #
+.pyc
+
+# Databases #
+.sql
+.log
+.sqlite
+
+# OS Compiled #
+.DS_Store
+.DS_Store?
+Thumbs.db
