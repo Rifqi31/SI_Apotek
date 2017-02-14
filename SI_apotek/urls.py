@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^suplier/', suplier_view.data_suplier),
 
     url(r'^pembelian/', suplier_view.data_pembelian_obat),
-    #url(r'^detail', pembelian_view.data_detail_pembelian),
+    url(r'^detail/', suplier_view.data_pembelian_obat_detail),
 
 #    url(r'^penjualan/', penjualan_view.data_penjualan_obat),
 #    url(r'^penjualan/detail', penjualan_view.detail_penjualan_obat),

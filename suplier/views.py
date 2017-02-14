@@ -5,8 +5,8 @@ from random import randint
 import random
 
 # models and forms
-from suplier.models import suplier, pembelian_obat
-from suplier.forms import suplier_form, pembelian_obat_form
+from suplier.models import suplier, pembelian_obat, detail_pembelian_obat
+from suplier.forms import suplier_form, pembelian_obat_form, pembelian_detail_form
 
 # Create your views here.
 
@@ -61,3 +61,24 @@ def data_pembelian_obat(request):
 	return render(request, 'pembelian.html',{'form':form})
 
 
+def data_pembelian_obat_detail(request):
+	if request.method == 'POST':
+		form_data = request.POST
+		form = pembelian_detail_form(form_data)
+
+		if form.is_valid():
+
+			input_detail_pembelian = detail_pembelian_obat(
+				
+				kd_pembelian_detail =  form.cleaned_data.get('kd_pembelian_detail'),
+				kd_obat_detail =  form.cleaned_data.get('kd_obat_detail'),
+				jumlah_beli = request.POST['jumlah_beli'],
+				total_harga_perobat = request.POST['total_harga_perobat']
+				
+				)
+			input_detail_pembelian.save()
+			return redirect('/')
+	else:
+		form = pembelian_detail_form()
+
+	return render(request, 'pembelian_detail.html',{'form':form})
