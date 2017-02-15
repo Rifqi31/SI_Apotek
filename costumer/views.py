@@ -82,7 +82,7 @@ def data_penjualan_obat_detail(request):
 				kd_penjualan_detail = form.cleaned_data.get('kd_penjualan_detail'),
 				kd_obat_detail =  form.cleaned_data.get('kd_obat_detail'),
 				jumlah_jual = request.POST['jumlah_jual'],
-				total_harga_perobat = request.POST['total_harga_perobat']
+				total_harga_perobat = form.cleaned_data.get('total_harga_perobat')
 				
 				)
 			input_detail_penjualan.save()
