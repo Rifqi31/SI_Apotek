@@ -34,11 +34,10 @@ class pembelian_obat_form(ModelForm):
 	class Meta:
 
 		model = pembelian_obat
-		fields = ['kd_suplier_obat','tgl_pembelian','total_pembelian']
+		fields = ['kd_suplier_obat','total_pembelian']
 		labels = {
 
 			'kd_suplier_obat' : 'Kode Suplier',
-			'tgl_pembelian' : 'Tanggal Pembelian',
 			'total_pembelian' : 'Total Pembelian'
 		}
 

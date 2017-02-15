@@ -17,8 +17,12 @@ def data_suplier(request):
 
 		if form.is_valid():
 
-			#count at zero for length data
-			kode_number = random.randint(1, 10000000000)
+			#random number for primary key
+			for x in range(1,100):
+				number = random.randint(1, 10000000000)
+				number += long(x)
+
+				kode_number = number
 
 			input_suplier = suplier(
 				
@@ -42,15 +46,18 @@ def data_pembelian_obat(request):
 
 		if form.is_valid():
 
-			#count at zero for length data
-			kode_number = random.randint(1, 10000000000)
+			#random number for primary key
+			for x in range(1,100):
+				number = random.randint(1, 10000000000)
+				number += long(x)
+
+				kode_number = number
 
 			input_pembelian = pembelian_obat(
 				
 				kd_pembelian = kode_number,
 				kd_suplier_obat =  form.cleaned_data.get('kd_suplier_obat'),
-				tgl_pembelian = request.POST['tgl_pembelian'],
-				total_pembelian = request.POST['total_pembelian']
+				total_pembelian = form.cleaned_data.get('total_pembelian')
 				
 				)
 			input_pembelian.save()
@@ -73,7 +80,7 @@ def data_pembelian_obat_detail(request):
 				kd_pembelian_detail =  form.cleaned_data.get('kd_pembelian_detail'),
 				kd_obat_detail =  form.cleaned_data.get('kd_obat_detail'),
 				jumlah_beli = request.POST['jumlah_beli'],
-				total_harga_perobat = request.POST['total_harga_perobat']
+				total_harga_perobat = form.cleaned_data.get('total_harga_perobat')
 				
 				)
 			input_detail_pembelian.save()

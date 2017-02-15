@@ -17,15 +17,19 @@ def data_obat(request):
 
 		if form.is_valid():
 
-			#count at zero for length data
-			kode_number = random.randint(1, 10000000000)
+			#random number for primary key
+			for x in range(1,100):
+				number = random.randint(1, 10000000000)
+				number += long(x)
+
+				kode_number = number
 
 			input_obat = obat(
 				
 				kd_obat = kode_number,
 				nama_obat = request.POST['nama_obat'],
 				tipe_obat = request.POST['tipe_obat'],
-				harga_jual = request.POST['harga_jual']
+				harga_jual = form.cleaned_data.get('harga_jual')
 				
 				)
 			input_obat.save()

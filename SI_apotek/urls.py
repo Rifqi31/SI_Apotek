@@ -22,22 +22,23 @@ from django.conf.urls.static import static
 # app as view
 from costumer import views as costumer_view
 from suplier import views as suplier_view
-#from pembelian import views as pembelian_view
-#from penjualan import views as penjualan_view
 from obat import views as obat_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', costumer_view.homepage),
 
-    url(r'^costumer/', costumer_view.data_costumer),   
+    url(r'^costumer/', costumer_view.data_costumer),
+
+    url(r'^penjualan/', costumer_view.data_penjualan_obat),
+    url(r'^penjualan_detail/', costumer_view.data_penjualan_obat_detail),
+  
+
     url(r'^suplier/', suplier_view.data_suplier),
 
     url(r'^pembelian/', suplier_view.data_pembelian_obat),
-    url(r'^detail/', suplier_view.data_pembelian_obat_detail),
+    url(r'^pembelian_detail/', suplier_view.data_pembelian_obat_detail),
 
-#    url(r'^penjualan/', penjualan_view.data_penjualan_obat),
-#    url(r'^penjualan/detail', penjualan_view.detail_penjualan_obat),
 
     url(r'^obat/', obat_view.data_obat),
 ]

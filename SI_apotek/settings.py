@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+#Money Library
+import moneyed
+from moneyed.localization import _FORMATTER
+from decimal import ROUND_HALF_EVEN
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'obat',
     #Third_party_app
     'crispy_forms',
+    'djmoney',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +133,29 @@ STATIC_URL = '/static/'
 
 #crispy from configuration
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+#setting add value money
+IDR = moneyed.add_currency(
+    code='IDR',
+    numeric='068',
+    name='Rupiah',
+    countries=('Indonesia', )
+)
+
+# Currency Formatter will output 2.000,00 Bs.
+_FORMATTER.add_sign_definition(
+    'default',
+    IDR,
+    prefix=u'Rupiah. '
+)
+
+_FORMATTER.add_formatting_definition(
+    'es_IDR',
+    group_size=3, group_separator=".", decimal_point=",",
+    positive_sign="",  trailing_positive_sign="",
+    negative_sign="-", trailing_negative_sign="",
+    rounding_method=ROUND_HALF_EVEN
+)
+
+CURRENCIES = ('USD','IDR')
