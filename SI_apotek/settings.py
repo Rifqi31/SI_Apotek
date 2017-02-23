@@ -43,14 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'Obat',
     'Pelanggan',
-=======
-    'costumer',
-    'suplier',
-    'obat',
->>>>>>> d6d284c31af1d237ce63e0dced0cc56b014c14a1
     #Third_party_app
     'crispy_forms',
     'djmoney',

@@ -1,5 +1,12 @@
 # Cached File #
-.pyc
+__init__.pyc
+views.pyc
+test.pyc
+models.pyc
+apps.pyc
+admin.pyc
+
+0001_initial.pyc
 
 # Databases #
 .sql
@@ -18,4 +25,4 @@ Thumbs.db
 
 
 # ignore directory #
-/migrations
+/migrations/
