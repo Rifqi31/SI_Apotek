@@ -7,7 +7,7 @@ class Pelanggan_Form(ModelForm):
 
 	class Meta:
 
-		models = Pelanggan
+		model = Pelanggan
 		fields = ['nama_pelanggan','alamat_pelanggan','nomer_telepon']
 		labels = {
 
