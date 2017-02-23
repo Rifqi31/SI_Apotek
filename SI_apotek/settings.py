@@ -130,7 +130,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "mystatic", "media_root")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "mystatic", "properties_root")
@@ -139,8 +139,7 @@ STATICFILES_DIRS = (
         os.path.join(BASE_DIR, "mystatic", "properties"),
     )
 
-=======
->>>>>>> d6d284c31af1d237ce63e0dced0cc56b014c14a1
+
 #crispy from configuration
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
