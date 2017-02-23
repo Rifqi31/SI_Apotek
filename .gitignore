@@ -1,0 +1,18 @@
+# Cached File #
+.pyc
+
+# Databases #
+.sql
+.log
+.sqlite
+.sqlite3
+db.sqlite3
+
+# OS Compiled #
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+
+# ignore directory #
+/migrations
