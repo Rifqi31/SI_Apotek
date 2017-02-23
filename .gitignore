@@ -6,7 +6,10 @@
 .log
 .sqlite
 .sqlite3
+<<<<<<< HEAD
 db.sqlite3
+=======
+>>>>>>> d6d284c31af1d237ce63e0dced0cc56b014c14a1
 
 # OS Compiled #
 .DS_Store
