@@ -9,6 +9,7 @@ import datetime
 from Pelanggan.models import*
 from Karyawan.models import BiodataKaryawan
 from Obat.models import*
+from Resep.models import*
 
 # Create your models here.
 
