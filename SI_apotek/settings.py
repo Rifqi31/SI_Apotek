@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'Obat',
     'Pelanggan',
     'Pemesanan',
+    'Penjualan',
     'Karyawan',
     #Third_party_app
     'crispy_forms',
