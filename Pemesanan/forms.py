@@ -24,3 +24,34 @@ class Pemesanan_Form(ModelForm):
                 'required':'Anda harus memilih kode kode karyawan'
             }
         }
+
+
+class DetailPemesanan_Form(ModelForm):
+
+    class Meta:
+
+        model = DetailPemesanan
+        fields = ['kode_pemesanan','kode_obat','kode_resep','jumlah']
+        labels = {
+
+            'kode_pemesanan':'Kode Pemesanan',
+            'kode_obat':'Kode Obat',
+            'kode_resep':'Kode Resep',
+            'jumlah':'Jumlah'
+        }
+
+        error_messages = {
+
+            'kode_pemesanan':{
+                'required':'Anda harus memilih kode Pemesanan'
+            },
+            'kode_obat':{
+                'required':'Anda harus memilih kode obat'
+            },
+            'kode_resep':{
+                'required':'Anda harus memilih kode resep'
+            },
+            'jumlah':{
+                'required':'Anda harus mengisi jumlah'
+            }
+        }
