@@ -10,4 +10,4 @@ class Admin_Resep(admin.ModelAdmin):
 	search_fields = ['kode_resep','nama_pasien']
 	list_per_page = 15
 
-admin.site_register(Resep, Admin_Resep)
+admin.site.register(Resep, Admin_Resep)

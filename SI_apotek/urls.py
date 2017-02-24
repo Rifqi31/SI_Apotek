@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 from Obat import views as obat_view
 from Pelanggan import views as pelanggan_view
 from Pemesanan import views as pemesanan_view
+from Resep import views as resep_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -34,5 +35,7 @@ urlpatterns = [
     url(r'^pelanggan/', pelanggan_view.Data_Pelanggan),
     url(r'^pemesanan/', pemesanan_view.Data_Pemesanan),
     url(r'^detail_pemesanan/', pemesanan_view.Data_DetailPemesanan),
+
+    url(r'^resep/', resep_view.Data_Resep),
 
 ]
