@@ -22,14 +22,16 @@ from django.conf.urls.static import static
 # app as view
 from Obat import views as obat_view
 from Pelanggan import views as pelanggan_view
+from Pemesanan import views as pemesanan_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', obat_view.homepage),
-    
+
     url(r'^obat/', obat_view.Data_Obat),
     url(r'^jenis_obat/', obat_view.Data_JenisObat),
 
     url(r'^pelanggan/', pelanggan_view.Data_Pelanggan),
+    url(r'^pemesanan/', pemesanan_view.Data_Pemesanan),
 
 ]
