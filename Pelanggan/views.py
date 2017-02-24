@@ -13,11 +13,9 @@ def Data_Pelanggan(request):
 	if request.method == 'POST':
 		form = Pelanggan_Form(request.POST)
 
-
-	        for x in range(1,100):
-				kode_number = random.randint(1, 100000)
-				kode_number += long(x)
-
+		for x in range(1,100):
+			kode_number = random.randint(1, 100000)
+			kode_number += long(x)
 
 		if form.is_valid():
 			isi_data_pelanggan = Pelanggan(

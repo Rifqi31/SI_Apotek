@@ -13,11 +13,9 @@ def Data_Obat(request):
 	if request.method == 'POST':
 		form = Obat_Form(request.POST)
 
-
-	        for x in range(1,100):
-				kode_number = random.randint(1, 100000)
-				kode_number += long(x)
-
+		for x in range(1,100):
+			kode_number = random.randint(1, 100000)
+			kode_number += long(x)
 
 		if form.is_valid():
 			isi_data_obat = Obat(
@@ -48,15 +46,15 @@ def Data_JenisObat(request):
 			kode_number += long(x)
 
         if form.is_valid():
-        
+
             initial = form.save(commit = False)
             initial.kode_jenis_obat = kode_number
             initial.nama_jenis_obat = request.POST['nama_jenis_obat']
             initial.save()
-            
+
         form.save()
         return redirect('/')
-   
+
     else:
         form = JenisObat_Form()
 
