@@ -7,6 +7,7 @@ import datetime
 
 #import models
 from Pelanggan.models import*
+from Karyawan.models import BiodataKaryawan
 
 # Create your models here.
 
@@ -20,7 +21,7 @@ class Pemesanan(models.Model):
 
     tanggal_pemesanan = models.DateField(auto_now_add = True)
     kode_pelanggan = models.ForeignKey(Pelanggan)
-    kode_karyawan = models.ForeignKey(Karyawan)
+    kode_karyawan = models.ForeignKey(BiodataKaryawan)
 
     def __unicode__(self):
         return self.kode_pemesanan
