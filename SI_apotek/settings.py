@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Obat',
     'Pelanggan',
+    'Pemesanan',
+    'Karyawan',
     #Third_party_app
     'crispy_forms',
     'djmoney',

@@ -16,7 +16,7 @@ class Pemesanan(models.Model):
     kode_pemesanan = models.CharField(
         primary_key = True,
         max_length = 5,
-        validators=[RegexValidator(r'^\d{1,10}$')])
+        validators=[RegexValidator(r'^\d{1,10}$')]
     )
 
     tanggal_pemesanan = models.DateField(auto_now_add = True)

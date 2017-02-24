@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.conf import
+from django.conf import settings
 from django.core.validators import RegexValidator
 from django.core.validators import MaxLengthValidator
 from django.contrib.auth.models import User
@@ -13,7 +13,7 @@ class BiodataKaryawan(models.Model):
     kode_karyawan = models.CharField(
         primary_key = True,
         max_length = 5,
-        validators=[RegexValidator(r'^\d{1,10}$')])
+        validators=[RegexValidator(r'^\d{1,10}$')]
     )
 
     nama_karyawan = models.CharField(max_length = 50)
