@@ -33,3 +33,25 @@ def Data_Pemesanan(request):
         form = Pemesanan_Form()
 
     return render(request, 'pemesanan.html',{'form':form})
+
+
+
+def Data_DetailPemesanan(request):
+    if request.method == 'POST':
+        form = DetailPemesanan_Form(request.POST)
+
+        if form.is_valid():
+            isi_data_detail_pemesanan = DetailPemesanan(
+
+                kode_pemesanan = form.cleaned_data.get('kode_pemesanan'),
+                kode_obat = form.cleaned_data.get('kode_obat'),
+                kode_resep = form.cleaned_data.get('kode_resep'),
+                jumlah = request.POST['jumlah']
+                )
+            isi_data_detail_pemesanan.save()
+            return redirect('/')
+
+    else:
+        form = DetailPemesanan_Form()
+
+    return render(request, 'detail_pemesanan.html',{'form':form})

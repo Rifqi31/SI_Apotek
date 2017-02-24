@@ -33,5 +33,6 @@ urlpatterns = [
 
     url(r'^pelanggan/', pelanggan_view.Data_Pelanggan),
     url(r'^pemesanan/', pemesanan_view.Data_Pemesanan),
+    url(r'^detail_pemesanan/', pemesanan_view.Data_DetailPemesanan),
 
 ]
