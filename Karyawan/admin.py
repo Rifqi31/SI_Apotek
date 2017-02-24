@@ -9,4 +9,4 @@ class Admin_Karyawan(admin.ModelAdmin):
     search_fields = ['nama_karyawan','kode_karyawan','telepon_karyawan','email_karyawan']
     list_per_page = 15
 
-admin.site.register(Karyawan, Admin_Karyawan)
+admin.site.register(BiodataKaryawan, Admin_Karyawan)

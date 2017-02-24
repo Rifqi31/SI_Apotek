@@ -4,10 +4,11 @@ from django.db import models
 from django.conf import
 from django.core.validators import RegexValidator
 from django.core.validators import MaxLengthValidator
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Karyawan(models.Model):
+class BiodataKaryawan(models.Model):
 
     kode_karyawan = models.CharField(
         primary_key = True,
@@ -23,3 +24,12 @@ class Karyawan(models.Model):
 
     def __unicode__(self):
         return self.kode_karyawan
+
+#for create account karyawan
+class Akun_karyawan(models.Model):
+
+    akun = models.ForeignKey(User)
+    karyawan = models.ForeignKey(BiodataKaryawan)
+
+    def __unicode__(self):
+        return self.karyawan.nama_karyawan
