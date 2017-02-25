@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+#Biodata Karyawan
 class BiodataKaryawan(models.Model):
 
     nama_karyawan = models.CharField(max_length = 50)
@@ -32,6 +33,46 @@ class Akun_karyawan(models.Model):
     akun = models.ForeignKey(User)
     karyawan = models.ForeignKey(BiodataKaryawan)
     shift_kerja = models.CharField(max_length = 10, choices = waktu_kerja)
+
+    def __unicode__(self):
+        return self.karyawan.nama_karyawan
+
+
+#for absensi karyawan
+class Absen_karyawan(models.Model):
+
+    jenis_absen = {
+
+        ('izin','Izin'),
+        ('cuti','Cuti'),
+        ('alpa','Tanpa Kehadiran'),
+        ('hadir','Hadir'),
+    }
+
+    karyawan = models.ForeignKey(BiodataKaryawan)
+    jenis_kehadiran = models.CharField(max_length = 50, choices = jenis_absen)
+    waktu = models.DateField(auto_now_add = True)
+    shift_kerja_karyawan = models.ForeignKey(Akun_karyawan)
+
+    def __unicode__(self):
+        return self.shift_kerja_karyawan.shift_kerja
+
+
+#for izin karyawan
+class Izin_karyawan(models.Model):
+
+    jenis_izin = {
+
+        ('izin','Izin'),
+        ('cuti','Cuti'),
+    }
+
+    karyawan = models.ForeignKey(BiodataKaryawan)
+    jenis_kehadiran = models.CharField(max_length = 50, choices = jenis_izin)
+    waktu_mulai = models.DateField()
+    waktu_berhenti = models.DateField()
+    alasan = models.TextField(validators=[MaxLengthValidator(150)])
+    disetujui = models.BooleanField(default = False)
 
     def __unicode__(self):
         return self.karyawan.nama_karyawan
