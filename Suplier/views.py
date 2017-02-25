@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
+
+from random import randint
+import random
 
 from Suplier.models import*
 from Suplier.forms import*
@@ -20,9 +23,9 @@ def Data_Suplier(request):
 
                 kode_suplier = kode_number,
                 nama_suplier = request.POST['nama_suplier'],
-                alamat_suplier = request.POST['alamat_supleir'],
-                telepon_suplier = request.POST['telepon_supleir'],
-                email_suplier = request.POST['email_supleir'],
+                alamat_suplier = request.POST['alamat_suplier'],
+                telepon_suplier = request.POST['telepon_suplier'],
+                email_suplier = request.POST['email_suplier'],
                 )
             isi_data_suplier.save()
             return redirect('/')
