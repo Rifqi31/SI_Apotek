@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.conf import settings
+
+from random import randint
+import random
+
 
 from Resep.models import*
 from Resep.forms import*

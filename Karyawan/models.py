@@ -10,12 +10,6 @@ from django.contrib.auth.models import User
 
 class BiodataKaryawan(models.Model):
 
-    kode_karyawan = models.CharField(
-        primary_key = True,
-        max_length = 5,
-        validators=[RegexValidator(r'^\d{1,5}$')]
-    )
-
     nama_karyawan = models.CharField(max_length = 50)
     tanggal_lahir_karyawan = models.DateField()
     alamat_karyawan = models.TextField(validators=[MaxLengthValidator(100)])
@@ -23,14 +17,21 @@ class BiodataKaryawan(models.Model):
     email_karyawan = models.EmailField(blank = True)
 
     def __unicode__(self):
-        return self.kode_karyawan
+        return self.nama_karyawan
 
 
 #for create account karyawan
 class Akun_karyawan(models.Model):
 
+    waktu_kerja = {
+
+        ('pagi/siang','Pagi/Siang'),
+        ('malam','Malam')
+    }
+
     akun = models.ForeignKey(User)
-    kode_karyawan = models.ForeignKey(BiodataKaryawan)
+    karyawan = models.ForeignKey(BiodataKaryawan)
+    shift_kerja = models.CharField(max_length = 10, choices = waktu_kerja)
 
     def __unicode__(self):
-        return self.akun
+        return self.karyawan.nama_karyawan

@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 
-from random import randint
-import random
-
 #import models
 from Karyawan.models import*
 from Karyawan.forms import*
@@ -49,14 +46,9 @@ def register_karyawan(request):
 	if request.method == 'POST':
 		form = Karyawan_Form(request.POST)
 
-		for x in range(1,100):
-			kode_number = random.randint(1, 100000)
-			kode_number += long(x)
-
 		if form.is_valid():
 			isi_data_karyawan = BiodataKaryawan(
 
-				kode_karyawan = kode_number,
 				nama_karyawan = request.POST['nama_karyawan'],
 				tanggal_lahir_karyawan = request.POST['tanggal_lahir_karyawan'],
 				alamat_karyawan = request.POST['alamat_karyawan'],
