@@ -25,6 +25,7 @@ from Pelanggan import views as pelanggan_view
 from Pemesanan import views as pemesanan_view
 from Resep import views as resep_view
 from Penjualan import views as penjualan_view
+from Karyawan import views as karyawan_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,5 +40,9 @@ urlpatterns = [
 
     url(r'^resep/', resep_view.Data_Resep),
     url(r'^penjualan/', penjualan_view.Data_Penjualan),
+
+    url(r'^login_karyawan/', karyawan_view.login_karyawan_view),
+    url(r'^logout_karyawan/', karyawan_view.logout_karyawan_view),
+    url(r'^register_karyawan/', karyawan_view.register_karyawan),
 
 ]

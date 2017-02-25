@@ -13,17 +13,18 @@ class BiodataKaryawan(models.Model):
     kode_karyawan = models.CharField(
         primary_key = True,
         max_length = 5,
-        validators=[RegexValidator(r'^\d{1,10}$')]
+        validators=[RegexValidator(r'^\d{1,5}$')]
     )
 
     nama_karyawan = models.CharField(max_length = 50)
     tanggal_lahir_karyawan = models.DateField()
-    alamat_karyawawn = models.TextField(validators=[MaxLengthValidator(100)])
-    telepon_karyawan = models.CharField(max_length = 20, validators=[RegexValidator(r'^\d{1,10}$')])
-    email_karyawan = models.CharField(max_length = 50)
+    alamat_karyawan = models.TextField(validators=[MaxLengthValidator(100)])
+    telepon_karyawan = models.CharField(max_length = 20, validators=[RegexValidator(r'^\d{1,12}$')])
+    email_karyawan = models.EmailField(blank = True)
 
     def __unicode__(self):
         return self.kode_karyawan
+
 
 #for create account karyawan
 class Akun_karyawan(models.Model):
