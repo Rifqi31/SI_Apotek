@@ -17,7 +17,7 @@ class Pelanggan(models.Model):
 
 	nama_pelanggan = models.CharField(max_length = 50)
 	alamat_pelanggan = models.TextField(validators=[MaxLengthValidator(100)])
-	nomer_telepon = models.CharField(max_length = 20)
+	nomer_telepon = models.EmailField()
 
 	def __unicode__(self):
 		return self.kode_pelanggan
