@@ -5,6 +5,9 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 import datetime
 
+#django money field
+from djmoney.models.fields import MoneyField
+
 #import models
 from Pemesanan.models import Pemesanan
 from Obat.models import Obat
@@ -21,7 +24,7 @@ class Penjualan(models.Model):
 
     kode_pemesanan = models.ForeignKey(Pemesanan)
     tanggal_penjualan = models.DateField(auto_now_add = True)
-    total_penjualan = models.MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
+    total_penjualan = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 
     def __unicode__(self):
         return self.kode_penjualan
@@ -33,7 +36,7 @@ class DetailPenjualan(models.Model):
 	kode_penjualan = models.ForeignKey(Penjualan)
 	kd_obat = models.ForeignKey(Obat)
 	jumlah = models.IntegerField()
-	total_harga_perobat = models.MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
+	total_harga_perobat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 
 	def __unicode__(self):
 		return self.kode_penjualan
