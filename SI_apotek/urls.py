@@ -26,6 +26,7 @@ from Pemesanan import views as pemesanan_view
 from Resep import views as resep_view
 from Penjualan import views as penjualan_view
 from Karyawan import views as karyawan_view
+from Suplier import views as suplier_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
