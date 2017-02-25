@@ -13,8 +13,8 @@ admin.site.register(BiodataKaryawan, Admin_Karyawan)
 
 class Admin_AkunKaryawan(admin.ModelAdmin):
 
-    list_display = ['akun','karyawan']
-    search_fields = ['akun','karyawan']
+    list_display = ['akun','kode_karyawan']
+    search_fields = ['akun','kode_karyawan']
     list_per_page = 15
 
 admin.site.register(Akun_karyawan, Admin_AkunKaryawan)

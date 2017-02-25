@@ -30,7 +30,7 @@ class BiodataKaryawan(models.Model):
 class Akun_karyawan(models.Model):
 
     akun = models.ForeignKey(User)
-    karyawan = models.ForeignKey(BiodataKaryawan)
+    kode_karyawan = models.ForeignKey(BiodataKaryawan)
 
     def __unicode__(self):
-        return self.karyawan.nama_karyawan
+        return self.akun
