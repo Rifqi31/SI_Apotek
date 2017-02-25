@@ -28,12 +28,16 @@ class Pemesanan(models.Model):
     def __unicode__(self):
         return self.kode_pemesanan
 
+
+
 class DetailPemesanan(models.Model):
 
     kode_pemesanan = models.ForeignKey(Pemesanan)
     kode_obat = models.ForeignKey(Obat)
     kode_resep = models.ForeignKey(Resep)
     jumlah = models.IntegerField()
+    total_harga_perobat = models.MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
+
 
     def __unicode__(self):
         return self.kode_pemesanan
