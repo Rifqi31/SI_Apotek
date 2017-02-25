@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Resep',
     'Obat',
+    'Suplier',
     'Pelanggan',
     'Pemesanan',
     'Penjualan',

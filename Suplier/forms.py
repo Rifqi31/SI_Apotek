@@ -29,7 +29,7 @@ class Suplier_Form(ModelForm):
 			'telepon_suplier':{
 				'required':'Anda harus mengisi nomer telepon'
 
-			}
+			},
 			'email_suplier':{
 				'required':'Anda harus mengisi email'
 
