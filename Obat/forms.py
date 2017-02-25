@@ -8,11 +8,12 @@ class Obat_Form(ModelForm):
 	class Meta:
 
 		model = Obat
-		fields = ['nama_obat','kode_jenis_obat','harga_obat','stock_obat']
+		fields = ['nama_obat','jenis_obat','bentuk_obat','harga_obat','stock_obat']
 		labels = {
 
 			'nama_obat' : 'Nama Obat',
-			'kode_jenis_obat' : 'Kode Jenis Obat',
+			'jenis_obat' : 'Jenis Obat',
+			'bentuk_obat' : 'Bentuk Obat',
 			'harga_obat' : 'Harga Obat',
 			'stock_obat' : 'Stock'
 		}
@@ -23,10 +24,12 @@ class Obat_Form(ModelForm):
 				'required':'Anda harus mengisi nama obat'
 			},
 
-			'kode_jenis_obat':{
-				'required':'Anda harus memilih kode jenis obat'
+			'jenis_obat':{
+				'required':'Anda harus memilih jenis obat'
 			},
-
+			'bentuk_obat':{
+				'required':'Anda harus memilih bentuk obat'
+			},
 			'harga_obat':{
 				'required':'Anda harus mengisi harga obat'
 			},
@@ -34,23 +37,4 @@ class Obat_Form(ModelForm):
 			'stock_obat':{
 				'required':'Anda harus mengisi stock obat'
 			}
-		}
-
-
-class JenisObat_Form(ModelForm):
-
-	class Meta:
-
-		model = JenisObat 
-		fields = ['nama_jenis_obat']
-		labels = {
-
-			'nama_jenis_obat' : 'Jenis Obat'
-		}
-
-		error_messages = {
-
-			'nama_jenis_obat':{
-				'required':'Anda harus memilih nama jenis obat'
-			}				
 		}

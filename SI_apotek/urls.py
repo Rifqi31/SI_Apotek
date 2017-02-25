@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^$', obat_view.homepage),
 
     url(r'^obat/', obat_view.Data_Obat),
-    url(r'^jenis_obat/', obat_view.Data_JenisObat),
 
     url(r'^pelanggan/', pelanggan_view.Data_Pelanggan),
     url(r'^pemesanan/', pemesanan_view.Data_Pemesanan),

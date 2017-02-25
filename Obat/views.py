@@ -22,7 +22,8 @@ def Data_Obat(request):
 
 				kode_obat = kode_number,
 				nama_obat = request.POST['nama_obat'],
-				kode_jenis_obat = form.cleaned_data.get('kode_jenis_obat'),
+				jenis_obat = request.POST['jenis_obat'],
+				bentuk_obat = request.POST['bentuk_obat'],
 				harga_obat = form.cleaned_data.get('harga_obat'),
 				stock_obat = request.POST['stock_obat']
 
@@ -34,31 +35,6 @@ def Data_Obat(request):
 		form = Obat_Form()
 
 	return render(request, 'obat.html',{'form':form})
-
-
-
-def Data_JenisObat(request):
-    if request.method == 'POST':
-        form = JenisObat_Form(request.POST)
-
-        for x in range(1,100):
-			kode_number = random.randint(1, 100000)
-			kode_number += long(x)
-
-        if form.is_valid():
-
-            initial = form.save(commit = False)
-            initial.kode_jenis_obat = kode_number
-            initial.nama_jenis_obat = request.POST['nama_jenis_obat']
-            initial.save()
-
-        form.save()
-        return redirect('/')
-
-    else:
-        form = JenisObat_Form()
-
-    return render(request, 'jenis_obat.html', {'form': form})
 
 
 
