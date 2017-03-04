@@ -1,13 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 
-from Suplier.models import*
+from Suplier.models import Data_Suplier
 
-class Suplier_Form(ModelForm):
+class Data_Suplier_Form(ModelForm):
 
 	class Meta:
 
-		model = Suplier
+		model = Data_Suplier
 		fields = ['nama_suplier','alamat_suplier','telepon_suplier','email_suplier']
 		labels = {
 

@@ -1,18 +1,18 @@
 from django.forms import ModelForm
 from django import forms
 
-from Resep.models import*
+from Resep.models import Data_Resep
 
 class Resep_Form(ModelForm):
 
 	class Meta:
 
-		model = Resep
-		fields = ['tanggal_resep','nama_pasien']
+		model = Data_Resep
+		fields = ['tanggal_resep','kode_pelanggan']
 		labels = {
 
 			'tanggal_resep':'Tanggal',
-			'nama_pasien':'Nama Pasien',
+			'Kode_pelanggan':'Kode Pelanggan',
 		}
 
 		error_messages = {
@@ -20,8 +20,8 @@ class Resep_Form(ModelForm):
 			'tanggal_resep':{
 				'required':'Anda harus mengisi tanggal'
 			},
-			'nama_pasien':{
-				'required':'Anda harus mengisi nama pasien'
+			'kode_pelanggan':{
+				'required':'Anda harus memilih kode pelanggan'
 
 			}
 		}

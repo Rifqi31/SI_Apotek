@@ -4,9 +4,11 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import RegexValidator
 
+from Pelanggan.models import Data_Pelanggan
+
 # Create your models here.
 
-class Resep(models.Model):
+class Data_Resep(models.Model):
 
     kode_resep = models.CharField(
         primary_key = True,
@@ -15,6 +17,7 @@ class Resep(models.Model):
     )
 
     tanggal_resep = models.DateField()
+    kode_pelanggan = models.ForeignKey(Data_Pelanggan)
     nama_pasien = models.CharField(max_length = 50)
 
     def __unicode__(self):

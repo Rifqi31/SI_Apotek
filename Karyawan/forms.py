@@ -1,21 +1,23 @@
 from django.forms import ModelForm
 from django import forms
+from django.contrib.auth.models import User
 
-from Karyawan.models import*
+from Karyawan.models import Biodata_Karyawan, Akun_karyawan, Izin_karyawan
 
 class Karyawan_Form(ModelForm):
 
 	class Meta:
 
-		model = BiodataKaryawan
-		fields = ['nama_karyawan','tanggal_lahir_karyawan','alamat_karyawan','telepon_karyawan','email_karyawan']
+		model = Biodata_Karyawan
+		fields = ['nama_karyawan','tanggal_lahir','alamat','telepon','email_karyawan','shift_kerja']
 		labels = {
 
 			'nama_karyawan' : 'Nama Lengkap',
-			'tanggal_lahir_karyawan' : 'Tanggal Lahir',
-			'alamat_karyawan' : 'Alamat',
-			'telepon_karyawan' : 'Nomer Telepon',
-			'email_karyawan' : 'Email'
+			'tanggal_lahir' : 'Tanggal Lahir',
+			'alamat' : 'Alamat',
+			'telepon' : 'Nomer Telepon',
+			'email_karyawan' : 'Email',
+			'shift_kerja' : 'Waktu Kerja'
 		}
 
 		error_messages = {
@@ -35,3 +37,24 @@ class Karyawan_Form(ModelForm):
 				'required':'Anda harus mengisi nomer telepon'
 			}
 		}
+
+class Izin_karyawan_Form(ModelForm):
+
+	class Meta:
+
+		model = Izin_karyawan
+		fields = ['jenis_kehadiran','waktu_berhenti','alasan']
+		labels = {
+
+			'jenis_kehadiran':'Jenis Kehadiran',
+			'waktu_berhenti':'waktu_berhenti',
+			'alasan':'Alasan'
+
+		}
+
+
+
+#class akun_form(ModelForm):
+#	class Meta:
+#		model = User
+#		fields = ['username','password']

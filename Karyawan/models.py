@@ -9,13 +9,19 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 #Biodata Karyawan
-class BiodataKaryawan(models.Model):
+class Biodata_Karyawan(models.Model):
 
+    waktu_kerja = {
+
+        ('pagi/siang','Pagi/Siang'),
+        ('malam','Malam')
+    }
     nama_karyawan = models.CharField(max_length = 50)
-    tanggal_lahir_karyawan = models.DateField()
-    alamat_karyawan = models.TextField(validators=[MaxLengthValidator(100)])
-    telepon_karyawan = models.CharField(max_length = 20, validators=[RegexValidator(r'^\d{1,12}$')])
+    tanggal_lahir = models.DateField()
+    alamat = models.TextField(validators=[MaxLengthValidator(100)])
+    telepon = models.CharField(max_length = 20, validators=[RegexValidator(r'^\d{1,12}$')])
     email_karyawan = models.EmailField(blank = True)
+    shift_kerja = models.CharField(max_length = 10, choices = waktu_kerja)
 
     def __unicode__(self):
         return self.nama_karyawan
@@ -24,15 +30,8 @@ class BiodataKaryawan(models.Model):
 #for create account karyawan
 class Akun_karyawan(models.Model):
 
-    waktu_kerja = {
-
-        ('pagi/siang','Pagi/Siang'),
-        ('malam','Malam')
-    }
-
     akun = models.ForeignKey(User)
-    karyawan = models.ForeignKey(BiodataKaryawan)
-    shift_kerja = models.CharField(max_length = 10, choices = waktu_kerja)
+    karyawan = models.ForeignKey(Biodata_Karyawan)
 
     def __unicode__(self):
         return self.karyawan.nama_karyawan
@@ -43,19 +42,20 @@ class Absen_karyawan(models.Model):
 
     jenis_absen = {
 
-        ('izin','Izin'),
-        ('cuti','Cuti'),
-        ('alpa','Tanpa Kehadiran'),
-        ('hadir','Hadir'),
+        (u'hadir',u'Hadir'),
+        (u'izin',u'Izin'),
+        (u'cuti',u'Cuti'),
+        (u'alpa',u'Tanpa Kehadiran'),
+        
     }
 
-    karyawan = models.ForeignKey(BiodataKaryawan)
-    jenis_kehadiran = models.CharField(max_length = 50, choices = jenis_absen)
+
+    karyawan = models.ForeignKey(Akun_karyawan)
+    jenis_kehadiran = models.CharField(max_length = 50, choices = jenis_absen, default = 'hadir')
     waktu = models.DateField(auto_now_add = True)
-    shift_kerja_karyawan = models.ForeignKey(Akun_karyawan)
 
     def __unicode__(self):
-        return self.shift_kerja_karyawan.shift_kerja
+        return self.karyawan.akun
 
 
 #for izin karyawan
@@ -67,9 +67,9 @@ class Izin_karyawan(models.Model):
         ('cuti','Cuti'),
     }
 
-    karyawan = models.ForeignKey(BiodataKaryawan)
+    karyawan = models.ForeignKey(Biodata_Karyawan)
     jenis_kehadiran = models.CharField(max_length = 50, choices = jenis_izin)
-    waktu_mulai = models.DateField()
+    waktu_mulai = models.DateField(auto_now_add = True)
     waktu_berhenti = models.DateField()
     alasan = models.TextField(validators=[MaxLengthValidator(150)])
     disetujui = models.BooleanField(default = False)

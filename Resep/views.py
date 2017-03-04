@@ -1,15 +1,16 @@
 from django.shortcuts import render,redirect
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from random import randint
 import random
 
-
-from Resep.models import*
-from Resep.forms import*
+from Resep.models import Data_Resep
+from Resep.forms import Resep_Form
 
 # Create your views here.
-def Data_Resep(request):
+@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
+def Isi_Data_Resep(request):
     if request.method == 'POST':
         form = Resep_Form(request.POST)
 
@@ -20,13 +21,15 @@ def Data_Resep(request):
 
 
         if form.is_valid():
-            isi_data_resep = Resep(
+            initial = form.save(commit = False)
 
-                kode_resep = kode_number,
-                tanggal_resep = request.POST['tanggal_resep'],
-                nama_pasien = request.POST['nama_pasien'],
-                )
-            isi_data_resep.save()
+            initial.kode_resep = kode_number
+            initial.tanggal_resep = request.POST['tanggal_resep']
+            initial.kode_pelanggan = form.cleaned_data.get('kode_pelanggan')
+            initial.nama_pasien = initial.kode_pelanggan.nama_pelanggan
+            
+            initial.save()
+            form.save()
             return redirect('/')
 
     else:

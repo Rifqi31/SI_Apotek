@@ -1,34 +1,45 @@
 from django.shortcuts import render,redirect
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.db.models import Sum
+
+from Penjualan.models import Data_Penjualan
+from Pemesanan.models import DetailPemesanan
+from Penjualan.forms import Data_Penjualan_Form
 
 from random import randint
 import random
 
-from Penjualan.models import*
-from Penjualan.forms import*
-
 # Create your views here.
+@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
+def hitung_Penjualan(request):
+	if request.method == 'POST':
+		form = Data_Penjualan_Form(request.POST)
 
-def Data_Penjualan(request):
-    if request.method == 'POST':
-        form = Penjualan_Form(request.POST)
+		for x in range(1,100):
+			kode_number = random.randint(1, 100000)
+			kode_number += long(x)
 
 
-        for x in range(1,100):
-            kode_number = random.randint(1, 100000)
-            kode_number += long(x)
+		if form.is_valid():
+			initial = form.save(commit = False)
 
+			initial.kode_penjualan = kode_number
+			initial.kode_pemesanan = DetailPemesanan.objects.get(id=1)
+			initial.nama_pelanggan = initial.kode_pemesanan.nama_pemesan
 
-        if form.is_valid():
-            isi_data_penjualan = Penjualan(
+			jumlah = DetailPemesanan.objects.all().aggregate(Sum('jumlah'))
+			initial.total_barang = jumlah['jumlah__sum']
 
-                kode_penjualan = kode_number,
-                kode_pemesanan = form.cleaned_data.get('kode_pemesanan'),
-                )
-            isi_data_penjualan.save()
-            return redirect('/')
+			total_harga_perobat = DetailPemesanan.objects.all().aggregate(Sum('total_harga_perobat'))
+			initial.total_penjualan = total_harga_perobat['total_harga_perobat__sum']
 
-    else:
-        form = Penjualan_Form()
+			initial.save()
+			form.save()
+			return redirect('/')
 
-    return render(request, 'penjualan.html',{'form':form})
+	else:
+		form = Data_Penjualan_Form()
+
+	return render(request, 'penjualan.html',{'form':form})

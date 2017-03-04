@@ -7,9 +7,11 @@ from django.core.validators import RegexValidator
 #django money field
 from djmoney.models.fields import MoneyField
 
+from Suplier.models import Data_Suplier
+
 # Create your models here.
 
-class Obat(models.Model):
+class Data_Obat(models.Model):
 
 	jenis_obat = {
 
@@ -35,12 +37,13 @@ class Obat(models.Model):
 		max_length = 5,
 		validators=[RegexValidator(r'^\d{1,10}$')]
 	)
-
 	nama_obat = models.CharField(max_length = 100)
 	jenis_obat = models.CharField(max_length = 20, choices = jenis_obat)
 	bentuk_obat = models.CharField(max_length = 20, choices = bentuk_obat)
 	harga_obat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 	stock_obat = models.IntegerField()
+	kode_suplier = models.ForeignKey(Data_Suplier)
+	nama_suplier = models.CharField(max_length = 50)
 
 	def __unicode__(self):
 		return self.kode_obat

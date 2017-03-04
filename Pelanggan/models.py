@@ -7,14 +7,13 @@ from django.core.validators import MaxLengthValidator
 
 # Create your models here.
 
-class Pelanggan(models.Model):
+class Data_Pelanggan(models.Model):
 
 	kode_pelanggan =  models.CharField(
 		primary_key = True,
 		max_length = 5,
 		validators=[RegexValidator(r'^\d{1,10}$')]
 	)
-
 	nama_pelanggan = models.CharField(max_length = 50)
 	alamat_pelanggan = models.TextField(validators=[MaxLengthValidator(100)])
 	nomer_telepon = models.CharField(max_length = 20, validators=[RegexValidator(r'^\d{1,12}$')])

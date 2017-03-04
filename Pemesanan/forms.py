@@ -1,27 +1,27 @@
 from django.forms import ModelForm
 from django import forms
 
-from Pemesanan.models import*
+from Pemesanan.models import Data_Pemesanan, DetailPemesanan
 
-class Pemesanan_Form(ModelForm):
+class Data_Pemesanan_Form(ModelForm):
 
     class Meta:
 
-        model = Pemesanan
-        fields = ['kode_pelanggan','kode_karyawan']
+        model = Data_Pemesanan
+        fields = ['kode_pelanggan','karyawan']
         labels = {
 
-            'kode_pelanggan':'Kode Pelanggan',
-            'kode_karyawan':'Kode Karyawan'
+            'kode_pelanggan':'Pelanggan',
+            'kode_karyawan':'Karyawan'
         }
 
         error_messages = {
 
             'kode_pelanggan':{
-                'required':'Anda harus memilih kode Pelanggan'
+                'required':'Anda harus memilih Pelanggan'
             },
-            'kode_karyawan':{
-                'required':'Anda harus memilih kode kode karyawan'
+            'karyawan':{
+                'required':'Anda harus memilih karyawan'
             }
         }
 
@@ -34,22 +34,22 @@ class DetailPemesanan_Form(ModelForm):
         fields = ['kode_pemesanan','kode_obat','kode_resep','jumlah']
         labels = {
 
-            'kode_pemesanan':'Kode Pemesanan',
-            'kode_obat':'Kode Obat',
-            'kode_resep':'Kode Resep',
+            'kode_pemesanan':'Pemesan',
+            'kode_obat':'Obat',
+            'kode_resep':'Resep',
             'jumlah':'Jumlah'
         }
 
         error_messages = {
 
             'kode_pemesanan':{
-                'required':'Anda harus memilih kode Pemesanan'
+                'required':'Anda harus memilih Pemesan'
             },
             'kode_obat':{
-                'required':'Anda harus memilih kode obat'
+                'required':'Anda harus memilih obat'
             },
             'kode_resep':{
-                'required':'Anda harus memilih kode resep'
+                'required':'Anda harus memilih resep'
             },
             'jumlah':{
                 'required':'Anda harus mengisi jumlah'

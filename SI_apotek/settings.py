@@ -43,13 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Resep',
+    #Apps
+    'Karyawan',
     'Obat',
     'Suplier',
+    'Resep',
     'Pelanggan',
     'Pemesanan',
     'Penjualan',
-    'Karyawan',
+    'Pembelian',
     #Third_party_app
     'crispy_forms',
     'djmoney',
@@ -173,3 +175,6 @@ _FORMATTER.add_formatting_definition(
 )
 
 CURRENCIES = ('USD','IDR')
+
+#decorator
+LOGIN_KARYAWAN_URL = '/login_karyawan/'

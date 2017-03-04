@@ -1,13 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 
-from Pelanggan.models import*
+from Pelanggan.models import Data_Pelanggan
 
-class Pelanggan_Form(ModelForm):
+class Data_Pelanggan_Form(ModelForm):
 
 	class Meta:
 
-		model = Pelanggan
+		model = Data_Pelanggan
 		fields = ['nama_pelanggan','alamat_pelanggan','nomer_telepon']
 		labels = {
 

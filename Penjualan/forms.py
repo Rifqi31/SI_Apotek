@@ -1,22 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 
-from Penjualan.models import*
+from Penjualan.models import Data_Penjualan
 
-class Penjualan_Form(ModelForm):
+class Data_Penjualan_Form(ModelForm):
 
-    class Meta:
+	class Meta:
 
-        model = Penjualan
-        fields = ['kode_pemesanan']
-        labels = {
-
-            'kode_pemesanan':'Kode Pemesanan',
-        }
-
-        error_messages = {
-
-            'kode_pemesanan':{
-                'required':'Anda harus memilih kode Pelanggan'
-            }
-        }
+		model = Data_Penjualan
+		fields = []
+		labels = {
+		}

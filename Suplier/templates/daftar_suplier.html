@@ -1,0 +1,54 @@
+{% load suplier_helper %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Daftar suplier</h4>
+        </div>
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+							<td>Nama Suplier</td>
+							<td>Alamat</td>
+							<td>Telepon</td>
+							<td>Email</td>
+					</tr>
+				</thead>
+					<tbody>
+						{% for suplier in daftar_suplier %}
+							<tr>
+								<td>{{ forloop.counter|get_table_number:daftar_suplier.number }}</td>
+								<td>{{ suplier.nama_suplier }}</td>
+								<td>{{ suplier.alamat_suplier }}</td>
+								<td>{{ suplier.telepon_suplier }}</td>
+								<td>{{ suplier.email_suplier }}</td>
+								<td>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+			</table>
+		</div>
+							<!-- /.table-resposive -->
+			<ul class="pager">
+				{% if daftar_suplier.has_previous %}
+					<li class="previous">
+						<a href="?page={{daftar_suplier.previous_page_number}}">previous</a>
+					</li>
+				{% endif %}
+					<li class="current">
+						Page{{ daftar_suplier.number }} of {{ daftar_suplier.paginator.num_pages }}.
+					</li>
+				{% if daftar_suplier.has_next %}
+					<li class="next">
+						<a href="?page={{daftar_suplier.page_number}}">next</a>
+					</li>
+				{% endif %}
+			</ul>
+	</div>
+</div>
+{% endblock %}
+

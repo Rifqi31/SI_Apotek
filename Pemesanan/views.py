@@ -1,17 +1,18 @@
 from django.shortcuts import render,redirect
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from random import randint
 import random
 
-from Pemesanan.models import*
-from Pemesanan.forms import*
+from Pemesanan.models import Data_Pemesanan, DetailPemesanan
+from Pemesanan.forms import Data_Pemesanan_Form, DetailPemesanan_Form
 
 # Create your views here.
-
-def Data_Pemesanan(request):
+@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
+def Isi_Data_Pemesanan(request):
     if request.method == 'POST':
-        form = Pemesanan_Form(request.POST)
+        form = Data_Pemesanan_Form(request.POST)
 
 
         for x in range(1,100):
@@ -20,35 +21,43 @@ def Data_Pemesanan(request):
 
 
         if form.is_valid():
-            isi_data_pemesanan = Pemesanan(
+            initial = form.save(commit = False)
 
-                kode_pemesanan = kode_number,
-                kode_pelanggan = form.cleaned_data.get('kode_pelanggan'),
-                kode_karyawan = form.cleaned_data.get('kode_karyawan'),
-                )
-            isi_data_pemesanan.save()
+            initial.kode_pemesanan = kode_number
+            initial.kode_pelanggan = form.cleaned_data.get('kode_pelanggan')
+            initial.nama_pelanggan = initial.kode_pelanggan.nama_pelanggan
+            initial.karyawan = form.cleaned_data.get('karyawan')
+                
+            initial.save()
+            form.save()
             return redirect('/')
 
     else:
-        form = Pemesanan_Form()
+        form = Data_Pemesanan_Form()
 
     return render(request, 'pemesanan.html',{'form':form})
 
 
 
+
+@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
 def Data_DetailPemesanan(request):
     if request.method == 'POST':
         form = DetailPemesanan_Form(request.POST)
 
         if form.is_valid():
-            isi_data_detail_pemesanan = DetailPemesanan(
+            initial = form.save(commit = False)
 
-                kode_pemesanan = form.cleaned_data.get('kode_pemesanan'),
-                kode_obat = form.cleaned_data.get('kode_obat'),
-                kode_resep = form.cleaned_data.get('kode_resep'),
-                jumlah = request.POST['jumlah']
-                )
-            isi_data_detail_pemesanan.save()
+            initial.kode_pemesanan = form.cleaned_data.get('kode_pemesanan')
+            initial.nama_pemesan = initial.kode_pemesanan.nama_pelanggan
+            initial.kode_obat = form.cleaned_data.get('kode_obat')
+            initial.nama_obat = initial.kode_obat.nama_obat
+            initial.kode_resep = form.cleaned_data.get('kode_resep')
+            initial.jumlah = request.POST['jumlah']
+            initial.total_harga_perobat = initial.kode_obat.harga_obat * initial.jumlah
+                
+            initial.save()
+            form.save()
             return redirect('/')
 
     else:

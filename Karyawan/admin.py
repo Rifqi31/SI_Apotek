@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from Karyawan.models import*
+from Karyawan.models import Biodata_Karyawan, Akun_karyawan, Absen_karyawan, Izin_karyawan
 
 import datetime
 
@@ -8,33 +8,34 @@ import datetime
 
 class Admin_Karyawan(admin.ModelAdmin):
 
-    list_display = ['nama_karyawan','tanggal_lahir_karyawan','alamat_karyawan','telepon_karyawan','email_karyawan']
-    search_fields = ['nama_karyawan','telepon_karyawan','email_karyawan']
+    list_display = ['nama_karyawan','tanggal_lahir','alamat','telepon','email_karyawan','shift_kerja']
+    list_filter = ['shift_kerja']
+    search_fields = ['nama_karyawan','telepon','email_karyawan']
     list_per_page = 15
 
-admin.site.register(BiodataKaryawan, Admin_Karyawan)
+admin.site.register(Biodata_Karyawan, Admin_Karyawan)
 
 
-class Admin_AkunKaryawan(admin.ModelAdmin):
+class Admin_Akun_Karyawan(admin.ModelAdmin):
 
-    list_display = ['akun','karyawan','shift_kerja']
-    search_fields = ['akun','karyawan','shift_kerja']
+    list_display = ['akun','karyawan']
+    search_fields = ['akun','karyawan']
     list_per_page = 15
 
-admin.site.register(Akun_karyawan, Admin_AkunKaryawan)
+admin.site.register(Akun_karyawan, Admin_Akun_Karyawan)
 
 
-class Admin_AbsenKaryawan(admin.ModelAdmin):
+class Admin_Absen_Karyawan(admin.ModelAdmin):
 
-	list_display = ['karyawan','jenis_kehadiran','waktu','shift_kerja_karyawan']
-	list_filter = ['jenis_kehadiran','shift_kerja_karyawan']
+	list_display = ['karyawan','jenis_kehadiran','waktu']
+	list_filter = ['jenis_kehadiran']
 	search_fields = ['karyawan']
 	list_per_page = 15
 
-admin.site.register(Absen_karyawan, Admin_AbsenKaryawan)
+admin.site.register(Absen_karyawan, Admin_Absen_Karyawan)
 
 
-class Admin_IzinKaryawan(admin.ModelAdmin):
+class Admin_Izin_Karyawan(admin.ModelAdmin):
 	list_display = ['karyawan','jenis_kehadiran','waktu_mulai','waktu_berhenti','alasan','disetujui']
 	search_fields = ['karyawan']
 	list_per_page = 15
@@ -57,7 +58,7 @@ class Admin_IzinKaryawan(admin.ModelAdmin):
 					waktu = date 
 					
 					)
-				Absen_karyawan.save()
+				isi_absen_karyawan.save()
 
 			izin.disetujui = True
 			izin.save()
@@ -70,4 +71,4 @@ class Admin_IzinKaryawan(admin.ModelAdmin):
 	batalkan_izin.short_description = "Batalkan pengajuan yang dipilih"
 	
 
-admin.site.register(Izin_karyawan, Admin_IzinKaryawan)
+admin.site.register(Izin_karyawan, Admin_Izin_Karyawan)

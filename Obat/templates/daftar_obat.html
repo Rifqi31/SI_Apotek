@@ -1,0 +1,60 @@
+{% load obat_helper %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Daftar Obat</h4>
+        </div>
+        <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+							<td>Kode</td>
+							<td>Nama</td>
+							<td>Jenis</td>
+							<td>Bentuk</td>
+							<td>Harga</td>
+							<td>Stok</td>
+							<td>Suplier</td>
+					</tr>
+				</thead>
+					<tbody>
+						{% for obat in daftar_obat %}
+							<tr>
+								<td>{{ forloop.counter|get_table_number:daftar_obat.number }}</td>
+								<td>{{ obat.kode_obat }}</td>
+								<td>{{ obat.nama_obat }}</td>
+								<td>{{ obat.jenis_obat }}</td>
+								<td>{{ obat.bentuk_obat }}</td>
+								<td>{{ obat.harga_obat }}</td>
+								<td>{{ obat.stock_obat }}</td>
+								<td>{{ obat.nama_suplier }}</td>
+								<td>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+			</table>
+		</div>
+							<!-- /.table-resposive -->
+			<ul class="pager">
+				{% if daftar_obat.has_previous %}
+					<li class="previous">
+						<a href="?page={{daftar_obat.previous_page_number}}">previous</a>
+					</li>
+				{% endif %}
+					<li class="current">
+						Page{{ daftar_obat.number }} of {{ daftar_obat.paginator.num_pages }}.
+					</li>
+				{% if daftar_obat.has_next %}
+					<li class="next">
+						<a href="?page={{daftar_obat.page_number}}">next</a>
+					</li>
+				{% endif %}
+			</ul>
+	</div>
+</div>
+{% endblock %}
+
