@@ -37,7 +37,7 @@ def login_karyawan_view(request):
                     request.session['karyawan_id'] = akun.karyawan.id
                     request.session['username'] = request.POST['username']
 
-                finally:
+                except:
                     messages.add_message(
                         request, messages.INFO,
                         'Akun ini belum terhubung dengan data karyawan, silahkan hubungi administartor'
