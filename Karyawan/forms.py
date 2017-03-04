@@ -1,60 +1,49 @@
 from django.forms import ModelForm
-from django import forms
-from django.contrib.auth.models import User
 
-from Karyawan.models import Biodata_Karyawan, Akun_karyawan, Izin_karyawan
+from Karyawan.models import Biodata_karyawan, Izin_karyawan
+
 
 class Karyawan_Form(ModelForm):
+    class Meta:
+        model = Biodata_karyawan
+        fields = ['nama_karyawan', 'tanggal_lahir', 'alamat', 'telepon', 'email_karyawan', 'shift_kerja']
+        labels = {
 
-	class Meta:
+            'nama_karyawan': 'Nama Lengkap',
+            'tanggal_lahir': 'Tanggal Lahir',
+            'alamat': 'Alamat',
+            'telepon': 'Nomer Telepon',
+            'email_karyawan': 'Email',
+            'shift_kerja': 'Waktu Kerja'
+        }
 
-		model = Biodata_Karyawan
-		fields = ['nama_karyawan','tanggal_lahir','alamat','telepon','email_karyawan','shift_kerja']
-		labels = {
+        error_messages = {
 
-			'nama_karyawan' : 'Nama Lengkap',
-			'tanggal_lahir' : 'Tanggal Lahir',
-			'alamat' : 'Alamat',
-			'telepon' : 'Nomer Telepon',
-			'email_karyawan' : 'Email',
-			'shift_kerja' : 'Waktu Kerja'
-		}
+            'nama_karyawan': {
+                'required': 'Anda harus mengisi nama'
+            },
 
-		error_messages = {
+            'tanggal_lahir_karyawan': {
+                'required': 'Anda harus mengisi tanggal lahir'
+            },
 
-			'nama_karyawan':{
-				'required':'Anda harus mengisi nama'
-			},
+            'alamat_karyawan': {
+                'required': 'Anda harus mengisi alamat'
+            },
+            'telepon_karyawan': {
+                'required': 'Anda harus mengisi nomer telepon'
+            }
+        }
 
-			'tanggal_lahir_karyawan':{
-				'required':'Anda harus mengisi tanggal lahir'
-			},
-
-			'alamat_karyawan':{
-				'required':'Anda harus mengisi alamat'
-			},
-			'telepon_karyawan':{
-				'required':'Anda harus mengisi nomer telepon'
-			}
-		}
 
 class Izin_karyawan_Form(ModelForm):
+    class Meta:
+        model = Izin_karyawan
+        fields = ['jenis_kehadiran', 'waktu_berhenti', 'alasan']
+        labels = {
 
-	class Meta:
+            'jenis_kehadiran': 'Jenis Kehadiran',
+            'waktu_berhenti': 'waktu_berhenti',
+            'alasan': 'Alasan'
 
-		model = Izin_karyawan
-		fields = ['jenis_kehadiran','waktu_berhenti','alasan']
-		labels = {
-
-			'jenis_kehadiran':'Jenis Kehadiran',
-			'waktu_berhenti':'waktu_berhenti',
-			'alasan':'Alasan'
-
-		}
-
-
-
-#class akun_form(ModelForm):
-#	class Meta:
-#		model = User
-#		fields = ['username','password']
+        }

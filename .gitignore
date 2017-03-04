@@ -8,17 +8,12 @@ admin.pyc
 forms.pyc
 urls.pyc
 
-0001_initial.pyc
-
 # Databases #
 .sql
 .log
 .sqlite
 .sqlite3
-<<<<<<< HEAD
 db.sqlite3
-=======
->>>>>>> d6d284c31af1d237ce63e0dced0cc56b014c14a1
 
 # OS Compiled #
 .DS_Store
@@ -27,4 +22,10 @@ Thumbs.db
 
 
 # ignore directory #
-/migrations/
+migrations/
+.idea/SI_Apotek.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+
+mystatic/
