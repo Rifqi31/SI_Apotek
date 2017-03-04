@@ -49,8 +49,8 @@ urlpatterns = [
     url(r'^resep/', resep_view.isi_data_resep),
 
     # Suplier
-    url(r'^suplier/', suplier_view.Isi_Data_Suplier),
-    url(r'^daftar_suplier/', suplier_view.daftar_suplier),
+    url(r'^suplier/', suplier_view.isi_data_suplier),
+    url(r'^daftar_suplier/', suplier_view.tampil_daftar_suplier),
 
     # Pelanggan dan Pemesanan
     url(r'^pelanggan/', pelanggan_view.isi_data_pelanggan),
