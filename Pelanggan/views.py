@@ -10,7 +10,6 @@ from Pelanggan.forms import Data_Pelanggan_Form
 
 # Create your views here.
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
-
 def isi_data_pelanggan(request):
     if request.method == 'POST':
         form = Data_Pelanggan_Form(request.POST)
