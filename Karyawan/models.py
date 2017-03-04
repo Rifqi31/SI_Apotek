@@ -20,7 +20,6 @@ class Biodata_karyawan(models.Model):
     email_karyawan = models.EmailField(blank=True)
     shift_kerja = models.CharField(max_length=10, choices=waktu_kerja)
 
-    @property
     def __unicode__(self):
         return self.nama_karyawan
 
@@ -29,7 +28,6 @@ class Akun_karyawan(models.Model):
     akun = models.ForeignKey(User)
     karyawan = models.ForeignKey(Biodata_karyawan)
 
-    @property
     def __unicode__(self):
         return self.karyawan.nama_karyawan
 
@@ -48,7 +46,6 @@ class Absen_karyawan(models.Model):
     jenis_kehadiran = models.CharField(max_length=50, choices=jenis_absen, default='hadir')
     waktu = models.DateField(auto_now_add=True)
 
-    @property
     def __unicode__(self):
         return self.karyawan.akun
 
@@ -67,6 +64,5 @@ class Izin_karyawan(models.Model):
     alasan = models.TextField(validators=[MaxLengthValidator(150)])
     disetujui = models.BooleanField(default=False)
 
-    @property
     def __unicode__(self):
         return self.karyawan.nama_karyawan

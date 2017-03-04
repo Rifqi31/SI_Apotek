@@ -44,6 +44,5 @@ class Data_Obat(models.Model):
     kode_suplier = models.ForeignKey(Data_Suplier)
     nama_suplier = models.CharField(max_length=50)
 
-    @property
     def __unicode__(self):
         return self.kode_obat

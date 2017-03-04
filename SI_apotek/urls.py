@@ -13,11 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.conf.urls import url
 from django.contrib import admin
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 # app as view
 from Karyawan import views as karyawan_view
@@ -29,12 +26,11 @@ from Penjualan import views as penjualan_view
 
 from Suplier import views as suplier_view
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', obat_view.homepage),
 
-    #karyawan
+    # karyawan
     url(r'^login_karyawan/', karyawan_view.login_karyawan_view),
     url(r'^logout_karyawan/', karyawan_view.logout_karyawan_view),
     url(r'^register_karyawan/', karyawan_view.register_karyawan),
@@ -42,30 +38,25 @@ urlpatterns = [
     url(r'^daftar_izin_karyawan/', karyawan_view.daftar_izin_karyawan),
 
     url(r'^daftar_hadir/$', karyawan_view.daftar_hadir_karyawan),
-    url(r'^daftar_hadir/cetak/(?P<bulan>\d+)/(?P<tahun>\d+)$',karyawan_view.cetak_absensi, name ='show_pdf'),
-#   url(r'^daftar_hadir/grafik/(?P<bulan>\d+)/(?P<tahun>\d+)$',karyawan_view.tampil_grafik, name ='show_grafik'),
+    url(r'^daftar_hadir/cetak/(?P<bulan>\d+)/(?P<tahun>\d+)$', karyawan_view.cetak_absensi, name='show_pdf'),
+    # url(r'^daftar_hadir/grafik/(?P<bulan>\d+)/(?P<tahun>\d+)$',karyawan_view.tampil_grafik, name ='show_grafik'),
 
 
 
-    #Obat dan Resep
+    # Obat dan Resep
     url(r'^obat/', obat_view.isi_data_obat),
     url(r'^daftar_obat/', obat_view.tampil_daftar_obat),
     url(r'^resep/', resep_view.Isi_Data_Resep),
 
-
-
-    #Suplier
+    # Suplier
     url(r'^suplier/', suplier_view.Isi_Data_Suplier),
     url(r'^daftar_suplier/', suplier_view.daftar_suplier),
 
+    # Pelanggan dan Pemesanan
+    url(r'^pelanggan/', pelanggan_view.isi_data_pelanggan),
+    url(r'^pemesanan/', pemesanan_view.isi_data_pemesanan),
+    url(r'^detail_pemesanan/', pemesanan_view.data_detailpemesanan),
 
-
-    #Pelanggan dan Pemesanan
-    url(r'^pelanggan/', pelanggan_view.Isi_Data_Pelanggan),
-    url(r'^pemesanan/', pemesanan_view.Isi_Data_Pemesanan),
-    url(r'^detail_pemesanan/', pemesanan_view.Data_DetailPemesanan),
-
-
-    #Penjualan
+    # Penjualan
     url(r'^penjualan/', penjualan_view.hitung_Penjualan),
 ]
