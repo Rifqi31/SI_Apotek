@@ -48,7 +48,7 @@ urlpatterns = [
 
 
     #Obat dan Resep
-    url(r'^obat/', obat_view.Isi_Data_Obat),
+    url(r'^obat/', obat_view.isi_data_obat),
     url(r'^daftar_obat/', obat_view.tampil_daftar_obat),
     url(r'^resep/', resep_view.Isi_Data_Resep),
 
@@ -68,7 +68,4 @@ urlpatterns = [
 
     #Penjualan
     url(r'^penjualan/', penjualan_view.hitung_Penjualan),
-
-
-
 ]
