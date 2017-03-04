@@ -58,5 +58,5 @@ urlpatterns = [
     url(r'^detail_pemesanan/', pemesanan_view.data_detailpemesanan),
 
     # Penjualan
-    url(r'^penjualan/', penjualan_view.hitung_Penjualan),
+    url(r'^penjualan/', penjualan_view.hitung_penjualan),
 ]

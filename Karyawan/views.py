@@ -174,7 +174,9 @@ def cetak_absensi(request, bulan, tahun):
         ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
         ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
     })
-    kehadiran_table = Table(table_data, colWidths=[doc.width / 4.0] * 2).setStyle(table_style)
+    kehadiran_table = Table(table_data, colWidths=[doc.width / 4.0] * 2)
+    kehadiran_table.setStyle(table_style)
+
     # mengisi pdf
     content = [
         Paragraph('Daftar Kehadiran %s%s' % (bulan, tahun), styles['Title']),

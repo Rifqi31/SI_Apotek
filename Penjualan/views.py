@@ -1,45 +1,38 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import Http404
 from django.db.models import Sum
 
 from Penjualan.models import Data_Penjualan
 from Pemesanan.models import DetailPemesanan
-from Penjualan.forms import Data_Penjualan_Form
 
-from random import randint
 import random
 
+
 # Create your views here.
-@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
-def hitung_Penjualan(request):
-	if request.method == 'POST':
-		form = Data_Penjualan_Form(request.POST)
+@login_required(login_url=settings.LOGIN_KARYAWAN_URL)
+def hitung_penjualan(request):
+    if request.POST:
+        try:
+            for x in range(1, 100):
+                kode_number = random.randint(1, 100000)
+                kode_number += long(x)
 
-		for x in range(1,100):
-			kode_number = random.randint(1, 100000)
-			kode_number += long(x)
+            jumlah = DetailPemesanan.objects.all().aggregate(Sum('jumlah'))
+            total_harga_perobat = DetailPemesanan.objects.all().aggregate(Sum('total_harga_perobat'))
 
+            isi_penjualan = Data_Penjualan(
 
-		if form.is_valid():
-			initial = form.save(commit = False)
+                kode_penjualan=kode_number,
+                kode_pemesanan=DetailPemesanan.objects.get(id=1),
+                nama_pelanggan=kode_number.nama_pemesan,
+                total_barang=jumlah['jumlah__sum'],
+                total_penjualan=total_harga_perobat['total_harga_perobat__sum']
+            )
+            isi_penjualan.save()
+            return redirect('/')
+        except:
+            raise Http404("Wrong Code")
 
-			initial.kode_penjualan = kode_number
-			initial.kode_pemesanan = DetailPemesanan.objects.get(id=1)
-			initial.nama_pelanggan = initial.kode_pemesanan.nama_pemesan
-
-			jumlah = DetailPemesanan.objects.all().aggregate(Sum('jumlah'))
-			initial.total_barang = jumlah['jumlah__sum']
-
-			total_harga_perobat = DetailPemesanan.objects.all().aggregate(Sum('total_harga_perobat'))
-			initial.total_penjualan = total_harga_perobat['total_harga_perobat__sum']
-
-			initial.save()
-			form.save()
-			return redirect('/')
-
-	else:
-		form = Data_Penjualan_Form()
-
-	return render(request, 'penjualan.html',{'form':form})
+    return render(request, 'penjualan.html')
