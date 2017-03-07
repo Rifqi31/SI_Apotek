@@ -7,6 +7,7 @@ from django.core.validators import RegexValidator
 from djmoney.models.fields import MoneyField
 
 from Suplier.models import Data_Suplier
+from Pembelian.models import Data_Pembelian
 
 
 # Create your models here.
@@ -36,8 +37,9 @@ class Data_Obat(models.Model):
         max_length=5,
         validators=[RegexValidator(r'^\d{1,10}$')]
     )
+    kode_pembelian_suplier = models.ForeignKey(Data_Pembelian)
     nama_obat = models.CharField(max_length=100)
-    jenis_obat = models.CharField(max_length=20, choices=jenis_obat)
+    jenis_obat = models.CharField(choices=jenis_obat, max_length=20)
     bentuk_obat = models.CharField(max_length=20, choices=bentuk_obat)
     harga_obat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
     stock_obat = models.IntegerField()
