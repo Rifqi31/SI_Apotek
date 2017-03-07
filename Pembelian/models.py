@@ -21,6 +21,7 @@ class Data_Pembelian(models.Model):
     nama_suplier = models.CharField(max_length=50)
     nama_obat = models.CharField(max_length=50)
     tgl_pembelian = models.DateField(auto_now_add=True)
+    harga_beli = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
     total_barang = models.IntegerField()
     total_pembelian = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 

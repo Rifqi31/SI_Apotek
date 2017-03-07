@@ -26,7 +26,7 @@ def isi_data_obat(request):
 
             initial.kode_obat = kode_number
             initial.kode_pembelian_suplier = form.cleaned_data.get("kode_pembelian_suplier")
-            initial.nama_obat = request.POST['nama_obat']
+            initial.nama_obat = initial.kode_pembelian_suplier.nama_obat
             initial.jenis_obat = request.POST['jenis_obat']
             initial.bentuk_obat = request.POST['bentuk_obat']
             initial.harga_obat = form.cleaned_data.get("harga_obat")

@@ -12,10 +12,11 @@ class Admin_Pembelian(admin.ModelAdmin):
         'nama_suplier',
         'nama_obat',
         'tgl_pembelian',
+        'harga_beli',
         'total_barang',
         'total_pembelian']
 
-    search_fields = ['kode_pembelian', 'kode_suplier', 'nama_suplier', 'kode_obat', 'nama_obat']
+    search_fields = ['kode_pembelian', 'kode_suplier', 'nama_suplier', 'nama_obat']
     list_per_page = 15
 
 

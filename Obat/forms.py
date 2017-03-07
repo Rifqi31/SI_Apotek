@@ -6,21 +6,20 @@ from Obat.models import Data_Obat
 class Data_Obat_Form(ModelForm):
     class Meta:
         model = Data_Obat
-        fields = ['nama_obat', 'jenis_obat', 'bentuk_obat', 'harga_obat', 'stock_obat', 'kode_suplier']
+        fields = ['kode_pembelian_suplier', 'jenis_obat', 'bentuk_obat', 'harga_obat', 'kode_suplier']
         labels = {
 
-            'nama_obat': 'Nama Obat',
+            'kode_pembelian_suplier': 'Kode Pembelian Suplier',
             'jenis_obat': 'Jenis Obat',
             'bentuk_obat': 'Bentuk Obat',
             'harga_obat': 'Harga Obat',
-            'stock_obat': 'Stock',
             'kode_suplier': 'Suplier',
         }
 
         error_messages = {
 
-            'nama_obat': {
-                'required': 'Anda harus mengisi nama obat'
+            'kode_pembelian_suplier': {
+                'required': 'Anda harus memilih kode pembelian dari suplier'
             },
 
             'jenis_obat': {

@@ -23,10 +23,10 @@ def isi_data_pembelian(request):
             initial.kode_pembelian = kode_number
             initial.kode_suplier = form.cleaned_data.get('kode_suplier')
             initial.nama_suplier = initial.kode_suplier.nama_suplier
-            initial.kode_obat = form.cleaned_data.get('kode_obat')
-            initial.nama_obat = initial.kode_obat.nama_obat
+            initial.nama_obat = request.POST['nama_obat']
+            initial.harga_beli = form.cleaned_data.get('harga_beli')
             initial.total_barang = request.POST['total_barang']
-            initial.total_pembelian = initial.kode_obat.harga_obat * initial.total_barang
+            initial.total_pembelian = initial.harga_beli * initial.total_barang
 
             initial.save()
             form.save()
