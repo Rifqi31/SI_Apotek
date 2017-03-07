@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 import random
 
 from Pemesanan.forms import Data_Pemesanan_Form, DetailPemesanan_Form
+from Karyawan.models import Biodata_karyawan
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ def isi_data_pemesanan(request):
             initial.kode_pemesanan = kode_number
             initial.kode_pelanggan = form.cleaned_data.get('kode_pelanggan')
             initial.nama_pelanggan = initial.kode_pelanggan.nama_pelanggan
-            initial.karyawan = form.cleaned_data.get('karyawan')
+            initial.karyawan = Biodata_karyawan.objects.get(id=request.session['karyawan_id'])
 
             initial.save()
             form.save()

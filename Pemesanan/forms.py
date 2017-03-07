@@ -6,20 +6,16 @@ from Pemesanan.models import Data_Pemesanan, DetailPemesanan
 class Data_Pemesanan_Form(ModelForm):
     class Meta:
         model = Data_Pemesanan
-        fields = ['kode_pelanggan', 'karyawan']
+        fields = ['kode_pelanggan']
         labels = {
 
             'kode_pelanggan': 'Pelanggan',
-            'kode_karyawan': 'Karyawan'
         }
 
         error_messages = {
 
             'kode_pelanggan': {
                 'required': 'Anda harus memilih Pelanggan'
-            },
-            'karyawan': {
-                'required': 'Anda harus memilih karyawan'
             }
         }
 
