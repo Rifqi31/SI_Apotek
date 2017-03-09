@@ -1,14 +1,12 @@
 from django.contrib import admin
 
-from Pembelian.models import Data_Pembelian
-
-
+from Transaksi.models import*
 # Register your models here.
 
 class Admin_Pembelian(admin.ModelAdmin):
     list_display = [
         'kode_pembelian',
-        'kode_suplier',
+        #'kode_suplier',
         'nama_suplier',
         'nama_obat',
         'tgl_pembelian',
@@ -21,3 +19,12 @@ class Admin_Pembelian(admin.ModelAdmin):
 
 
 admin.site.register(Data_Pembelian, Admin_Pembelian)
+
+
+class Admin_penjualan(admin.ModelAdmin):
+    list_display = ['kode_penjualan', 'nama_pelanggan', 'total_barang', 'total_penjualan']
+    seacrch_display = ['kode_penjualalan', 'kode_pemesanan', 'nama_pelanggan']
+    list_per_page = 15
+
+
+admin.site.register(Data_Penjualan, Admin_penjualan)

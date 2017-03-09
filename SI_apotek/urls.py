@@ -19,12 +19,10 @@ from django.contrib import admin
 # app as view
 from Karyawan import views as karyawan_view
 from Obat import views as obat_view
-from Pelanggan import views as pelanggan_view
-from Pemesanan import views as pemesanan_view
+from Costumer import views as costumer_view
+from Transaksi import views as transaksi_view
 from Resep import views as resep_view
-from Penjualan import views as penjualan_view
 from Suplier import views as suplier_view
-from Pembelian import views as pembelian_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -43,21 +41,19 @@ urlpatterns = [
 
 
 
-    # Obat dan Resep
+    # Obat,Resep dan Suplier
     url(r'^obat/', obat_view.isi_data_obat),
     url(r'^daftar_obat/', obat_view.tampil_daftar_obat),
     url(r'^resep/', resep_view.isi_data_resep),
-
-    # Suplier
     url(r'^suplier/', suplier_view.isi_data_suplier),
     url(r'^daftar_suplier/', suplier_view.tampil_daftar_suplier),
 
     # Pelanggan dan Pemesanan
-    url(r'^pelanggan/', pelanggan_view.isi_data_pelanggan),
-    url(r'^pemesanan/', pemesanan_view.isi_data_pemesanan),
-    url(r'^detail_pemesanan/', pemesanan_view.data_detailpemesanan),
+    url(r'^pelanggan/', costumer_view.isi_data_pelanggan),
+    url(r'^pemesanan/', costumer_view.isi_data_pemesanan),
+    url(r'^detail_pemesanan/', costumer_view.data_detailpemesanan),
 
     # Penjualan dan Pembelian
-    url(r'^penjualan/', penjualan_view.hitung_penjualan),
-    url(r'^pembelian/', pembelian_views.isi_data_pembelian)
+    url(r'^penjualan/', transaksi_view.hitung_penjualan),
+    url(r'^pembelian/', transaksi_view.isi_data_pembelian)
 ]

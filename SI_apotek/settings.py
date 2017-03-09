@@ -46,12 +46,10 @@ INSTALLED_APPS = [
     #Apps
     'Karyawan',
     'Obat',
-    'Suplier',
+    'Costumer',
+    'Transaksi',
     'Resep',
-    'Pelanggan',
-    'Pemesanan',
-    'Penjualan',
-    'Pembelian',
+    'Suplier',
     #Third_party_app
     'crispy_forms',
     'djmoney',

@@ -6,11 +6,11 @@ from Resep.models import Data_Resep
 class Resep_Form(ModelForm):
     class Meta:
         model = Data_Resep
-        fields = ['tanggal_resep', 'kode_pelanggan']
+        fields = ['tanggal_resep', 'nama_pasien']
         labels = {
 
             'tanggal_resep': 'Tanggal',
-            'Kode_pelanggan': 'Kode Pelanggan',
+            'nama_pasien': 'Nama Pasien',
         }
 
         error_messages = {
@@ -18,8 +18,8 @@ class Resep_Form(ModelForm):
             'tanggal_resep': {
                 'required': 'Anda harus mengisi tanggal'
             },
-            'kode_pelanggan': {
-                'required': 'Anda harus memilih kode pelanggan'
+            'nama_pasien': {
+                'required': 'Anda harus mengisi nama pasien'
 
             }
         }

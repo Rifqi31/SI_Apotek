@@ -7,7 +7,7 @@ from django.core.validators import RegexValidator
 from djmoney.models.fields import MoneyField
 
 from Suplier.models import Data_Suplier
-from Pembelian.models import Data_Pembelian
+from Transaksi.models import Data_Pembelian
 
 
 # Create your models here.
