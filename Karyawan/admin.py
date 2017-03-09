@@ -43,7 +43,7 @@ class Admin_Izin_Karyawan(admin.ModelAdmin):
 
     actions = ['setuju_izin', 'batalkan_izin']
 
-    def setuju_izin(self, queryset):
+    def setuju_izin(self, request, queryset):
         for izin in queryset:
             diff = izin.waktu_berhenti - izin.waktu_mulai
             base = izin.waktu_berhenti
@@ -66,7 +66,7 @@ class Admin_Izin_Karyawan(admin.ModelAdmin):
 
     setuju_izin.short_description = "Terima pengajuan izin yang dipilih"
 
-    def batalkan_izin(self, queryset):
+    def batalkan_izin(self, request, queryset):
         queryset.update(disetujui=False)
 
     batalkan_izin.short_description = "Batalkan pengajuan yang dipilih"

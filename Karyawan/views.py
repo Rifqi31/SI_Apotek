@@ -92,7 +92,7 @@ def pengajuan_izin_karyawan(request):
         if form.is_valid():
             izin = Izin_karyawan(
 
-                nama_karyawan=Biodata_karyawan.objects.get(id=request.session['karyawan_id']),
+                karyawan=Biodata_karyawan.objects.get(id=request.session['karyawan_id']),
                 jenis_kehadiran=request.POST['jenis_kehadiran'],
                 waktu_mulai=form.cleaned_data.get('waktu_mulai'),
                 waktu_berhenti=request.POST['waktu_berhenti'],
