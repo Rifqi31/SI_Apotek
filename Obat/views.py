@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
 
 from Obat.models import Data_Obat
-from Obat.forms import Data_Obat_Form
+from Obat.forms import Data_Obat_Form, Resep_Form
 
 
 # Create your views here.
@@ -65,3 +65,32 @@ def tampil_daftar_obat(request):
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
 def homepage(request):
     return render(request, 'homepage.html', {})
+
+
+
+
+@login_required(login_url=settings.LOGIN_KARYAWAN_URL)
+def isi_data_resep(request):
+    if request.method == 'POST':
+        form = Resep_Form(request.POST)
+
+        for x in range(1, 100):
+            kode_number = random.randint(1, 100000)
+            kode_number += long(x)
+
+        if form.is_valid():
+            initial = form.save(commit=False)
+
+            initial.kode_resep = kode_number
+            initial.tanggal_resep = request.POST['tanggal_resep']
+            initial.kode_pelanggan = form.cleaned_data.get('kode_pelanggan')
+            initial.nama_pasien = initial.kode_pelanggan.nama_pelanggan
+
+            initial.save()
+            form.save()
+            return redirect('/')
+
+    else:
+        form = Resep_Form()
+
+    return render(request, 'resep.html', {'form': form})

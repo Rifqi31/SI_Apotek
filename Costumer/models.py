@@ -7,8 +7,7 @@ from django.core.validators import MaxLengthValidator
 from djmoney.models.fields import MoneyField
 
 from Karyawan.models import Biodata_karyawan
-from Obat.models import Data_Obat
-from Resep.models import Data_Resep
+from Obat.models import Data_Obat, Data_Resep
 
 # Create your models here.
 class Data_Pelanggan(models.Model):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from Obat.models import Data_Obat
+from Obat.models import Data_Obat, Data_Resep
 
 
 # Register your models here.
@@ -13,3 +13,12 @@ class Admin_Data_Obat(admin.ModelAdmin):
 
 
 admin.site.register(Data_Obat, Admin_Data_Obat)
+
+
+class Admin_Resep(admin.ModelAdmin):
+    list_display = ['kode_resep', 'tanggal_resep', 'nama_pasien']
+    search_fields = ['kode_resep', 'nama_pasien']
+    list_per_page = 15
+
+
+admin.site.register(Data_Resep, Admin_Resep)

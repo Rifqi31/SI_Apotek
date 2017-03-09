@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'Obat',
     'Costumer',
     'Transaksi',
-    'Resep',
     'Suplier',
     #Third_party_app
     'crispy_forms',

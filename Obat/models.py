@@ -48,3 +48,18 @@ class Data_Obat(models.Model):
 
     def __unicode__(self):
         return self.kode_obat
+
+
+
+class Data_Resep(models.Model):
+    kode_resep = models.CharField(
+        primary_key=True,
+        max_length=5,
+        validators=[RegexValidator(r'^\d{1,10}$')]
+    )
+
+    tanggal_resep = models.DateField()
+    nama_pasien = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.kode_resep

@@ -21,7 +21,6 @@ from Karyawan import views as karyawan_view
 from Obat import views as obat_view
 from Costumer import views as costumer_view
 from Transaksi import views as transaksi_view
-from Resep import views as resep_view
 from Suplier import views as suplier_view
 
 urlpatterns = [
@@ -44,7 +43,8 @@ urlpatterns = [
     # Obat,Resep dan Suplier
     url(r'^obat/', obat_view.isi_data_obat),
     url(r'^daftar_obat/', obat_view.tampil_daftar_obat),
-    url(r'^resep/', resep_view.isi_data_resep),
+    url(r'^resep/', obat_view.isi_data_resep),
+    
     url(r'^suplier/', suplier_view.isi_data_suplier),
     url(r'^daftar_suplier/', suplier_view.tampil_daftar_suplier),
 

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from Obat.models import Data_Obat
+from Obat.models import Data_Obat, Data_Resep
 
 
 class Data_Obat_Form(ModelForm):
@@ -37,5 +37,28 @@ class Data_Obat_Form(ModelForm):
             },
             'kode_suplier': {
                 'required': 'Anda harus memilih suplier'
+            }
+        }
+
+
+
+class Resep_Form(ModelForm):
+    class Meta:
+        model = Data_Resep
+        fields = ['tanggal_resep', 'nama_pasien']
+        labels = {
+
+            'tanggal_resep': 'Tanggal',
+            'nama_pasien': 'Nama Pasien',
+        }
+
+        error_messages = {
+
+            'tanggal_resep': {
+                'required': 'Anda harus mengisi tanggal'
+            },
+            'nama_pasien': {
+                'required': 'Anda harus mengisi nama pasien'
+
             }
         }
