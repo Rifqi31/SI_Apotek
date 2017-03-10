@@ -16,7 +16,7 @@ from reportlab.lib import colors
 
 # import models
 from Karyawan.models import Biodata_karyawan, Akun_karyawan, Absen_karyawan, Izin_karyawan
-from Karyawan.forms import Karyawan_Form, Izin_karyawan_Form
+from Karyawan.forms import Karyawan_Form, Absen_karyawan_Form, Izin_karyawan_Form
 
 
 # Create your views here.
@@ -27,16 +27,13 @@ def login_karyawan_view(request):
         if user is not None:
             if user.is_active:
                 try:
-                    akun = Akun_karyawan.objects.get(akun=user.id)
+                    akun = Akun_karyawan.objects.get(akun=user.id)          
 
                     login(request, user)
 
-                    # login with auto absen
-                    Absen_karyawan.objects.create(karyawan=akun, jenis_kehadiran="hadir")
-
                     request.session['karyawan_id'] = akun.karyawan.id
                     request.session['username'] = request.POST['username']
-
+                    
                 except:
                     messages.add_message(
                         request, messages.INFO,
@@ -82,6 +79,26 @@ def register_karyawan(request):
         form = Karyawan_Form()
 
     return render(request, 'register_karyawan.html', {'form': form})
+
+
+@login_required(login_url = settings.LOGIN_KARYAWAN_URL)
+def absen_karyawan(request):
+    if request.method == 'POST':
+        form = Absen_karyawan_Form(request.POST)
+
+        if form.is_valid():
+            absen = Absen_karyawan(
+
+                karyawan = Biodata_karyawan.objects.get(id = request.session['karyawan_id']),
+                jenis_kehadiran = "hadir"
+
+                )
+            absen.save()
+            return redirect('/')
+
+    else:
+        form = Absen_karyawan_Form()
+    return render(request, 'absen_karyawan.html',{'form':form})
 
 
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)

@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^izin_karyawan/', karyawan_view.pengajuan_izin_karyawan),
     url(r'^daftar_izin_karyawan/', karyawan_view.daftar_izin_karyawan),
 
+    url(r'^absen_karyawan/', karyawan_view.absen_karyawan),
+
     url(r'^daftar_hadir/$', karyawan_view.daftar_hadir_karyawan),
     url(r'^daftar_hadir/cetak/(?P<bulan>\d+)/(?P<tahun>\d+)$', karyawan_view.cetak_absensi, name='show_pdf'),
     # url(r'^daftar_hadir/grafik/(?P<bulan>\d+)/(?P<tahun>\d+)$',karyawan_view.tampil_grafik, name ='show_grafik'),

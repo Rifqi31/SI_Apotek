@@ -42,12 +42,12 @@ class Absen_karyawan(models.Model):
 
     }
 
-    karyawan = models.ForeignKey(Akun_karyawan)
+    karyawan = models.ForeignKey(Biodata_karyawan)
     jenis_kehadiran = models.CharField(max_length=50, choices=jenis_absen, default='hadir')
     waktu = models.DateField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.karyawan.akun
+        return self.karyawan.nama_karyawan
 
 
 class Izin_karyawan(models.Model):

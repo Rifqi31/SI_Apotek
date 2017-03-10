@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from Karyawan.models import Biodata_karyawan, Izin_karyawan
+from Karyawan.models import Biodata_karyawan, Absen_karyawan, Izin_karyawan
 
 
 class Karyawan_Form(ModelForm):
@@ -34,6 +34,13 @@ class Karyawan_Form(ModelForm):
                 'required': 'Anda harus mengisi nomer telepon'
             }
         }
+
+
+class Absen_karyawan_Form(ModelForm):
+    class Meta:
+        model = Absen_karyawan
+        fields = []
+        labels = {}
 
 
 class Izin_karyawan_Form(ModelForm):
