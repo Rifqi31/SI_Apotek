@@ -35,15 +35,15 @@ class Data_Pelanggan_Form(ModelForm):
 class Data_Pemesanan_Form(ModelForm):
     class Meta:
         model = Data_Pemesanan
-        fields = ['kode_pelanggan']
+        fields = ['pelanggan']
         labels = {
 
-            'kode_pelanggan': 'Pelanggan',
+            'pelanggan': 'Pelanggan',
         }
 
         error_messages = {
 
-            'kode_pelanggan': {
+            'pelanggan': {
                 'required': 'Anda harus memilih Pelanggan'
             }
         }
@@ -52,21 +52,21 @@ class Data_Pemesanan_Form(ModelForm):
 class DetailPemesanan_Form(ModelForm):
     class Meta:
         model = DetailPemesanan
-        fields = ['kode_pemesanan', 'kode_obat', 'kode_resep', 'jumlah']
+        fields = ['nama_pemesan', 'nama_obat', 'kode_resep', 'jumlah']
         labels = {
 
-            'kode_pemesanan': 'Pemesan',
-            'kode_obat': 'Obat',
+            'nama_pemesan': 'Pemesan',
+            'nama_obat': 'Obat',
             'kode_resep': 'Resep',
             'jumlah': 'Jumlah'
         }
 
         error_messages = {
 
-            'kode_pemesanan': {
+            'nama_pemesanan': {
                 'required': 'Anda harus memilih Pemesan'
             },
-            'kode_obat': {
+            'nama_obat': {
                 'required': 'Anda harus memilih obat'
             },
             'kode_resep': {

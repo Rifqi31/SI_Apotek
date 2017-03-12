@@ -46,8 +46,7 @@ def isi_data_pemesanan(request):
             initial = form.save(commit=False)
 
             initial.kode_pemesanan = kode_number
-            initial.kode_pelanggan = form.cleaned_data.get('kode_pelanggan')
-            initial.nama_pelanggan = initial.kode_pelanggan.nama_pelanggan
+            initial.pelanggan = form.cleaned_data.get('pelanggan')
             initial.karyawan = Biodata_karyawan.objects.get(id=request.session['karyawan_id'])
 
             initial.save()
@@ -69,13 +68,11 @@ def data_detailpemesanan(request):
         if form.is_valid():
             initial = form.save(commit=False)
 
-            initial.kode_pemesanan = form.cleaned_data.get('kode_pemesanan')
-            initial.nama_pemesan = initial.kode_pemesanan.nama_pelanggan
-            initial.kode_obat = form.cleaned_data.get('kode_obat')
-            initial.nama_obat = initial.kode_obat.nama_obat
+            initial.nama_pemesan = form.cleaned_data.get('nama_pemesan')
+            initial.nama_obat = form.cleaned_data.get('nama_obat')
             initial.kode_resep = form.cleaned_data.get('kode_resep')
             initial.jumlah = request.POST['jumlah']
-            initial.total_harga_perobat = initial.kode_obat.harga_obat * initial.jumlah
+            initial.total_harga_perobat = initial.nama_obat.harga_obat * initial.jumlah
 
             initial.save()
             form.save()

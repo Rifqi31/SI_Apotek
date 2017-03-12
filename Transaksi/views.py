@@ -8,6 +8,7 @@ import random
 
 from Transaksi.forms import*
 from Transaksi.models import*
+from Costumer.models import*
 
 # Create your views here.
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
@@ -53,8 +54,8 @@ def hitung_penjualan(request):
             initial = form.save(commit=False)
 
             initial.kode_penjualan = kode_number
-            initial.kode_pemesanan = DetailPemesanan.objects.get(id=1)
-            initial.nama_pelanggan = initial.kode_pemesanan.nama_pemesan
+            initial.nama_pemesan = DetailPemesanan.objects.get(id=1)
+            initial.nama_pelanggan = initial.nama_pemesan.nama_pemesan
 
             jumlah = DetailPemesanan.objects.all().aggregate(Sum('jumlah'))
             initial.total_barang = jumlah['jumlah__sum']

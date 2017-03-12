@@ -21,7 +21,7 @@ class Data_Pelanggan(models.Model):
     nomer_telepon = models.CharField(max_length=20, validators=[RegexValidator(r'^\d{1,12}$')])
 
     def __unicode__(self):
-        return self.kode_pelanggan
+        return self.nama_pelanggan
 
 
 class Data_Pemesanan(models.Model):
@@ -32,22 +32,19 @@ class Data_Pemesanan(models.Model):
     )
 
     tanggal_pemesanan = models.DateField(auto_now_add=True)
-    kode_pelanggan = models.ForeignKey(Data_Pelanggan)
-    nama_pelanggan = models.CharField(max_length=50)
+    pelanggan = models.ForeignKey(Data_Pelanggan)
     karyawan = models.ForeignKey(Biodata_karyawan)
 
     def __unicode__(self):
-        return self.kode_pemesanan
+        return self.pelanggan.nama_pelanggan
 
 
 class DetailPemesanan(models.Model):
-    kode_pemesanan = models.ForeignKey(Data_Pemesanan)
-    nama_pemesan = models.CharField(max_length=50)
-    kode_obat = models.ForeignKey(Data_Obat)
-    nama_obat = models.CharField(max_length=50)
-    kode_resep = models.ForeignKey(Data_Resep, blank=True)
+    nama_pemesan = models.ForeignKey(Data_Pemesanan)
+    nama_obat = models.ForeignKey(Data_Obat)
+    kode_resep = models.ForeignKey(Data_Resep, blank=True, null=True)
     jumlah = models.IntegerField()
     total_harga_perobat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 
     def __unicode__(self):
-        return self.kode_pemesanan.kode_pemesanan
+        return self.nama_pemesan.pelanggan

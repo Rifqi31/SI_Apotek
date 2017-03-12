@@ -47,7 +47,7 @@ class Data_Obat(models.Model):
     nama_suplier = models.CharField(max_length=50)
 
     def __unicode__(self):
-        return self.kode_obat
+        return self.nama_obat
 
 
 

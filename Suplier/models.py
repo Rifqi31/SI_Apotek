@@ -19,4 +19,4 @@ class Data_Suplier(models.Model):
     email_suplier = models.EmailField()
 
     def __unicode__(self):
-        return self.kode_suplier
+        return self.nama_suplier
