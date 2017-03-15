@@ -38,14 +38,9 @@ def isi_data_pemesanan(request):
     if request.method == 'POST':
         form = Data_Pemesanan_Form(request.POST)
 
-        for x in range(1, 100):
-            kode_number = random.randint(1, 100000)
-            kode_number += long(x)
-
         if form.is_valid():
             initial = form.save(commit=False)
 
-            initial.kode_pemesanan = kode_number
             initial.pelanggan = form.cleaned_data.get('pelanggan')
             initial.karyawan = Biodata_karyawan.objects.get(id=request.session['karyawan_id'])
             initial.nama_obat = form.cleaned_data.get('nama_obat')

@@ -12,8 +12,8 @@ class Admin_Pelanggan(admin.ModelAdmin):
 admin.site.register(Data_Pelanggan, Admin_Pelanggan)
 
 class Admin_Pemesanan(admin.ModelAdmin):
-    list_display = ['kode_pemesanan', 'tanggal_pemesanan', 'pelanggan', 'nama_obat', 'kode_resep', 'jumlah', 'karyawan', 'total_harga_perobat']
-    search_fields = ['kode_pemesanan', 'karyawan', 'pelanggan']
+    list_display = ['pelanggan', 'tanggal_pemesanan','nama_obat', 'kode_resep', 'jumlah', 'karyawan', 'total_harga_perobat']
+    search_fields = ['karyawan', 'pelanggan']
     list_per_page = 15
 
 

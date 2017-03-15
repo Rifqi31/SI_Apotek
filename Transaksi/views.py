@@ -26,7 +26,8 @@ def hitung_penjualan(request):
             initial = form.save(commit=False)
 
             initial.kode_penjualan = kode_number
-            initial.nama_pelanggan = Data_Pemesanan.objects.get(id=1)
+            initial.pelanggan = Data_Pemesanan.objects.get(id=1)
+            initial.nama_pelanggan = initial.pelanggan.pelanggan
 
             jumlah = Data_Pemesanan.objects.all().aggregate(Sum('jumlah'))
             initial.total_barang = jumlah['jumlah__sum']

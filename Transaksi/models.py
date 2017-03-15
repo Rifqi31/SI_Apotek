@@ -22,4 +22,4 @@ class Data_Penjualan(models.Model):
     total_penjualan = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 
     def __unicode__(self):
-        return self.nama_pelanggan
+        return self.nama_pelanggan.nama_pelanggan

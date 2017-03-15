@@ -25,14 +25,9 @@ class Data_Pelanggan(models.Model):
 
 
 class Data_Pemesanan(models.Model):
-    kode_pemesanan = models.CharField(
-        primary_key=True,
-        max_length=5,
-        validators=[RegexValidator(r'^\d{1,10}$')]
-    )
-
-    tanggal_pemesanan = models.DateField(auto_now_add=True)
+    
     pelanggan = models.ForeignKey(Data_Pelanggan)
+    tanggal_pemesanan = models.DateField(auto_now_add=True)
     karyawan = models.ForeignKey(Biodata_karyawan)
     nama_obat = models.ForeignKey(Data_Obat)
     kode_resep = models.ForeignKey(Data_Resep, blank=True, null=True)
