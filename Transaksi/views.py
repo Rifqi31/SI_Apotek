@@ -41,6 +41,7 @@ def isi_data_pembelian(request):
     return render(request, 'pembelian.html', {'form': form})
 
 
+#stack
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
 def hitung_penjualan(request):
     if request.method == 'POST':
@@ -54,13 +55,12 @@ def hitung_penjualan(request):
             initial = form.save(commit=False)
 
             initial.kode_penjualan = kode_number
-            initial.nama_pemesan = DetailPemesanan.objects.get(id=1)
-            initial.nama_pelanggan = initial.nama_pemesan.nama_pemesan
+            initial.nama_pelanggan = Data_Pemesanan.objects.get(id = request.POST.get('pelanggan_id'))
 
-            jumlah = DetailPemesanan.objects.all().aggregate(Sum('jumlah'))
+            jumlah = Data_Pemesanan.objects.all().aggregate(Sum('jumlah'))
             initial.total_barang = jumlah['jumlah__sum']
 
-            total_harga_perobat = DetailPemesanan.objects.all().aggregate(Sum('total_harga_perobat'))
+            total_harga_perobat = Data_Pemesanan.objects.all().aggregate(Sum('total_harga_perobat'))
             initial.total_penjualan = total_harga_perobat['total_harga_perobat__sum']
 
             initial.save()

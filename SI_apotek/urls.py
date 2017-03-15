@@ -53,7 +53,6 @@ urlpatterns = [
     # Pelanggan dan Pemesanan
     url(r'^pelanggan/', costumer_view.isi_data_pelanggan),
     url(r'^pemesanan/', costumer_view.isi_data_pemesanan),
-    url(r'^detail_pemesanan/', costumer_view.data_detailpemesanan),
 
     # Penjualan dan Pembelian
     url(r'^penjualan/', transaksi_view.hitung_penjualan),

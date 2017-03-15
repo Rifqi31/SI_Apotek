@@ -24,7 +24,7 @@ class Data_Pembelian(models.Model):
     total_pembelian = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
 
     def __unicode__(self):
-        return self.kode_pembelian
+        return self.nama_obat
 
 
 class Data_Penjualan(models.Model):

@@ -48,7 +48,10 @@ def isi_data_pemesanan(request):
             initial.kode_pemesanan = kode_number
             initial.pelanggan = form.cleaned_data.get('pelanggan')
             initial.karyawan = Biodata_karyawan.objects.get(id=request.session['karyawan_id'])
-
+            initial.nama_obat = form.cleaned_data.get('nama_obat')
+            initial.kode_resep = form.cleaned_data.get('kode_resep')
+            initial.jumlah = request.POST['jumlah']
+            initial.total_harga_perobat = initial.nama_obat.harga_obat * initial.jumlah
             initial.save()
             form.save()
             return redirect('/')
@@ -57,28 +60,3 @@ def isi_data_pemesanan(request):
         form = Data_Pemesanan_Form()
 
     return render(request, 'pemesanan.html', {'form': form})
-
-
-
-@login_required(login_url=settings.LOGIN_KARYAWAN_URL)
-def data_detailpemesanan(request):
-    if request.method == 'POST':
-        form = DetailPemesanan_Form(request.POST)
-
-        if form.is_valid():
-            initial = form.save(commit=False)
-
-            initial.nama_pemesan = form.cleaned_data.get('nama_pemesan')
-            initial.nama_obat = form.cleaned_data.get('nama_obat')
-            initial.kode_resep = form.cleaned_data.get('kode_resep')
-            initial.jumlah = request.POST['jumlah']
-            initial.total_harga_perobat = initial.nama_obat.harga_obat * initial.jumlah
-
-            initial.save()
-            form.save()
-            return redirect('/')
-
-    else:
-        form = DetailPemesanan_Form()
-
-    return render(request, 'detail_pemesanan.html', {'form': form})

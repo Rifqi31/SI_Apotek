@@ -31,9 +31,8 @@ def isi_data_obat(request):
             initial.bentuk_obat = request.POST['bentuk_obat']
             initial.harga_obat = form.cleaned_data.get("harga_obat")
             initial.stock_obat = initial.kode_pembelian_suplier.total_barang
-            initial.kode_suplier = form.cleaned_data.get('kode_suplier')
-            initial.nama_suplier = initial.kode_suplier.nama_suplier
-
+            initial.nama_suplier = form.cleaned_data.get('nama_suplier')
+            
             initial.save()
             form.save()
             return redirect('/')

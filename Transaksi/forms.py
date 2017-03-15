@@ -8,7 +8,7 @@ class Data_Pembelian_Form(ModelForm):
         fields = ['kode_suplier', 'nama_obat', 'harga_beli', 'total_barang']
         labels = {
 
-            'kode_suplier': 'Kode Suplier',
+            'kode_suplier': 'Suplier',
             'nama_obat': 'Nama Produk Obat',
             'harga_beli': 'Harga Beli',
             'total_barang': 'Total Barang'

@@ -43,9 +43,8 @@ class Data_Obat(models.Model):
     bentuk_obat = models.CharField(max_length=20, choices=bentuk_obat)
     harga_obat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
     stock_obat = models.IntegerField()
-    kode_suplier = models.ForeignKey(Data_Suplier)
-    nama_suplier = models.CharField(max_length=50)
-
+    nama_suplier = models.ForeignKey(Data_Suplier)
+    
     def __unicode__(self):
         return self.nama_obat
 
