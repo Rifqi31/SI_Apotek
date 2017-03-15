@@ -1,15 +1,28 @@
 from django.forms import ModelForm
 
-from Obat.models import Data_Obat, Data_Resep
+from Obat.models import Data_Obat, Data_Resep, Data_Pembelian
+
+
+class Data_Pembelian_Form(ModelForm):
+    class Meta:
+        model = Data_Pembelian
+        fields = ['kode_suplier', 'nama_obat', 'harga_beli', 'total_barang']
+        labels = {
+
+            'kode_suplier': 'Suplier',
+            'nama_obat': 'Nama Produk Obat',
+            'harga_beli': 'Harga Beli',
+            'total_barang': 'Total Barang'
+        }
 
 
 class Data_Obat_Form(ModelForm):
     class Meta:
         model = Data_Obat
-        fields = ['kode_pembelian_suplier', 'jenis_obat', 'bentuk_obat', 'harga_obat', 'nama_suplier']
+        fields = ['nama_obat', 'jenis_obat', 'bentuk_obat', 'harga_obat', 'nama_suplier']
         labels = {
 
-            'kode_pembelian_suplier': 'Nama Obat',
+            'nama_obat': 'Nama Obat',
             'jenis_obat': 'Jenis Obat',
             'bentuk_obat': 'Bentuk Obat',
             'harga_obat': 'Harga Obat',
@@ -18,7 +31,7 @@ class Data_Obat_Form(ModelForm):
 
         error_messages = {
 
-            'kode_pembelian_suplier': {
+            'nama_obat': {
                 'required': 'Anda harus memilih nama obat'
             },
 

@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^obat/', obat_view.isi_data_obat),
     url(r'^daftar_obat/', obat_view.tampil_daftar_obat),
     url(r'^resep/', obat_view.isi_data_resep),
+    url(r'^pembelian/', obat_view.isi_data_pembelian),
     
     url(r'^suplier/', suplier_view.isi_data_suplier),
     url(r'^daftar_suplier/', suplier_view.tampil_daftar_suplier),
@@ -55,6 +56,5 @@ urlpatterns = [
     url(r'^pemesanan/', costumer_view.isi_data_pemesanan),
 
     # Penjualan dan Pembelian
-    url(r'^penjualan/', transaksi_view.hitung_penjualan),
-    url(r'^pembelian/', transaksi_view.isi_data_pembelian)
+    url(r'^penjualan/', transaksi_view.hitung_penjualan)
 ]

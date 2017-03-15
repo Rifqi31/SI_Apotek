@@ -7,10 +7,27 @@ from django.core.validators import RegexValidator
 from djmoney.models.fields import MoneyField
 
 from Suplier.models import Data_Suplier
-from Transaksi.models import Data_Pembelian
 
 
 # Create your models here.
+
+class Data_Pembelian(models.Model):
+    kode_pembelian = models.CharField(
+        primary_key=True,
+        max_length=5,
+        validators=[RegexValidator(r'^\d{1,10}$')]
+    )
+    kode_suplier = models.ForeignKey(Data_Suplier, null=True)
+    nama_suplier = models.CharField(max_length=50)
+    nama_obat = models.CharField(max_length=50)
+    tgl_pembelian = models.DateField(auto_now_add=True)
+    harga_beli = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
+    total_barang = models.IntegerField()
+    total_pembelian = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
+
+    def __unicode__(self):
+        return self.nama_obat
+
 
 class Data_Obat(models.Model):
     jenis_obat = {
@@ -37,8 +54,7 @@ class Data_Obat(models.Model):
         max_length=5,
         validators=[RegexValidator(r'^\d{1,10}$')]
     )
-    kode_pembelian_suplier = models.ForeignKey(Data_Pembelian)
-    nama_obat = models.CharField(max_length=100)
+    nama_obat = models.ForeignKey(Data_Pembelian, null=True)
     jenis_obat = models.CharField(choices=jenis_obat, max_length=20)
     bentuk_obat = models.CharField(max_length=20, choices=bentuk_obat)
     harga_obat = MoneyField(max_digits=10, decimal_places=2, default_currency='IDR')
@@ -46,7 +62,7 @@ class Data_Obat(models.Model):
     nama_suplier = models.ForeignKey(Data_Suplier)
     
     def __unicode__(self):
-        return self.nama_obat
+        return self.nama_obat.nama_obat
 
 
 

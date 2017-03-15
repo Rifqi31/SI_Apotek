@@ -8,10 +8,41 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
 
 from Obat.models import Data_Obat
-from Obat.forms import Data_Obat_Form, Resep_Form
+from Obat.forms import Data_Obat_Form, Resep_Form, Data_Pembelian_Form
 
 
 # Create your views here.
+
+@login_required(login_url=settings.LOGIN_KARYAWAN_URL)
+def isi_data_pembelian(request):
+    if request.method == 'POST':
+        form = Data_Pembelian_Form(request.POST)
+
+        for x in range(1, 100):
+            kode_number = random.randint(1, 100000)
+            kode_number += long(x)
+
+        if form.is_valid():
+            initial = form.save(commit=False)
+
+            initial.kode_pembelian = kode_number
+            initial.kode_suplier = form.cleaned_data.get('kode_suplier')
+            initial.nama_suplier = initial.kode_suplier.nama_suplier
+            initial.nama_obat = request.POST['nama_obat']
+            initial.harga_beli = form.cleaned_data.get('harga_beli')
+            initial.total_barang = request.POST['total_barang']
+            initial.total_pembelian = initial.harga_beli * initial.total_barang
+
+            initial.save()
+            form.save()
+            return redirect('/')
+
+    else:
+        form = Data_Pembelian_Form()
+
+    return render(request, 'pembelian.html', {'form': form})
+
+
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
 def isi_data_obat(request):
     if request.method == 'POST':
@@ -25,12 +56,11 @@ def isi_data_obat(request):
             initial = form.save(commit=False)
 
             initial.kode_obat = kode_number
-            initial.kode_pembelian_suplier = form.cleaned_data.get("kode_pembelian_suplier")
-            initial.nama_obat = initial.kode_pembelian_suplier.nama_obat
+            initial.nama_obat = form.cleaned_data.get('nama_obat')
             initial.jenis_obat = request.POST['jenis_obat']
             initial.bentuk_obat = request.POST['bentuk_obat']
             initial.harga_obat = form.cleaned_data.get("harga_obat")
-            initial.stock_obat = initial.kode_pembelian_suplier.total_barang
+            initial.stock_obat = initial.nama_obat.total_barang
             initial.nama_suplier = form.cleaned_data.get('nama_suplier')
             
             initial.save()
@@ -59,6 +89,8 @@ def tampil_daftar_obat(request):
         daftar_obat = paginator.page(paginator.num_pages)
 
     return render(request, 'daftar_obat.html', {'daftar_obat': daftar_obat})
+
+
 
 
 @login_required(login_url=settings.LOGIN_KARYAWAN_URL)
